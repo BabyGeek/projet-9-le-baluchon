@@ -8,9 +8,23 @@
 import SwiftUI
 
 struct WeatherView: View {
+    @StateObject var viewModel = WeatherViewModel()
+        
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        NavigationView {
+            List {
+                ForEach(viewModel.weathers, id: \.self) { weather in
+                    HStack {
+                        Text("\(weather.temp)")
+                    }
+                    .padding(3)
+                }
+            }
+            .navigationTitle("Météo")
+        }
+        .onAppear {
+            viewModel.perform(lat: 35, lon: 13)
+        }
     }
 }
 
