@@ -7,26 +7,38 @@
 
 import Foundation
 
-struct Weather: Hashable, Codable {
-    let dt: Int
-    let sunrise: Int
-    let sunset: Int
-    let temp: Double
-    let feels_like: Int
-    let pressure: Int
-    let humidity: Int
-    let dew_point: Double
-    let uvi: Int
-    let clouds: Int
-    let visibility: Int
-    let wind_speed: Double
-    let wind_deg: Int
+struct Weather: Codable, Hashable {
+    let name: String
+    let sys: WheatherSys
+    let main: WheatherMain
     let weather: [WeatherType]
 }
 
-struct WeatherType: Hashable, Codable {
+struct WeatherType: Codable, Hashable {
     let id: Int
     let main: String
     let description: String
     let icon: String
+}
+
+struct WheatherSys: Codable, Hashable {
+    let country: String
+    let sunrise: Int
+    let sunset: Int
+}
+
+struct WheatherMain: Codable, Hashable  {
+    let temp: Double
+    let tempMin: Double
+    let tempMax: Double
+    let pressure: Int
+    let humidity: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case tempMin = "temp_min"
+        case tempMax = "temp_max"
+        case temp
+        case pressure
+        case humidity
+    }
 }

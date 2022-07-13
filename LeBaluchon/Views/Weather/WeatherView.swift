@@ -9,24 +9,24 @@ import SwiftUI
 
 struct WeatherView: View {
     @StateObject var viewModel = WeatherViewModel()
-        
+    
     var body: some View {
         NavigationView {
-            List {
-                ForEach(viewModel.weathers, id: \.self) { weather in
-                    HStack {
-                        Text("\(weather.temp)")
-                    }
-                    .padding(3)
+            List(viewModel.weathers, id: \.self) { weather in
+                HStack {
+                    Text(weather.name)
+                    Text("\(weather.main.temp)")
                 }
+                .padding(3)
             }
-            .navigationTitle("Météo")
         }
+        .navigationTitle("Météo")
         .onAppear {
             viewModel.perform(lat: 35, lon: 13)
         }
     }
 }
+
 
 struct WeatherView_Previews: PreviewProvider {
     static var previews: some View {

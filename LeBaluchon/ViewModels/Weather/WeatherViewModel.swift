@@ -15,12 +15,11 @@ class WeatherViewModel: ObservableObject {
 
     public func perform(lat latitude: Double, lon longitude: Double) {
         var url = self.url
+        
         url.append("&lat=\(latitude)")
         url.append("&lon=\(longitude)")
         url.append("&appid=\(self.apiKey)")
-        
-        print(url)
-        
+                
         guard let url = URL(string: url) else {
             return
         }
