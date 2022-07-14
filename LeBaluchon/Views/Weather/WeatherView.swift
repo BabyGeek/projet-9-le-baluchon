@@ -11,24 +11,19 @@ struct WeatherView: View {
     @StateObject var viewModel = WeatherViewModel()
     
     var body: some View {
-        List(viewModel.weathers, id: \.self) { weather in
-            WeatherRowView(weather: weather)
+        NavigationView {
+            
+            List(viewModel.weathers, id: \.self) { weather in
+                WeatherRowView(weather: weather)
+            }
+            .navigationTitle("Weather")
+            
         }
         .onAppear {
+            viewModel.perform(lat: 40.713051, lon: -74.007233)
             viewModel.perform(lat: 43.125191, lon: 5.931040)
+            viewModel.perform(lat: 10.382129, lon: 105.434076)
         }
-    }
-}
-
-struct WeatherRowView: View {
-    let weather: Weather
-    
-    var body: some View {
-        HStack {
-            Text(weather.name)
-            Text("\(weather.main.temp.formatted())")
-        }
-        .padding(3)
     }
 }
 
