@@ -23,8 +23,8 @@ struct WeatherType: Codable, Hashable {
 
 struct WheatherSys: Codable, Hashable {
     let country: String
-    let sunrise: Int
-    let sunset: Int
+    let sunrise: Double
+    let sunset: Double
 }
 
 struct WheatherMain: Codable, Hashable  {
