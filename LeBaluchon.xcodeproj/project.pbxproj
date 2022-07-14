@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B5C692C288052E500593690 /* WeatherRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5C692B288052E500593690 /* WeatherRowView.swift */; };
 		2BC5B4E8287DF061003BC4E2 /* LeBaluchonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC5B4E7287DF061003BC4E2 /* LeBaluchonApp.swift */; };
 		2BC5B4EA287DF061003BC4E2 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC5B4E9287DF061003BC4E2 /* WeatherView.swift */; };
 		2BC5B4EC287DF064003BC4E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BC5B4EB287DF064003BC4E2 /* Assets.xcassets */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2B5C692B288052E500593690 /* WeatherRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherRowView.swift; sourceTree = "<group>"; };
 		2BC5B4E4287DF061003BC4E2 /* LeBaluchon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeBaluchon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BC5B4E7287DF061003BC4E2 /* LeBaluchonApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeBaluchonApp.swift; sourceTree = "<group>"; };
 		2BC5B4E9287DF061003BC4E2 /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				2BC5B4E9287DF061003BC4E2 /* WeatherView.swift */,
+				2B5C692B288052E500593690 /* WeatherRowView.swift */,
 			);
 			path = Weather;
 			sourceTree = "<group>";
@@ -362,6 +365,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BC5B4EA287DF061003BC4E2 /* WeatherView.swift in Sources */,
+				2B5C692C288052E500593690 /* WeatherRowView.swift in Sources */,
 				2BC5B51E287E0190003BC4E2 /* Weather.swift in Sources */,
 				2BC5B521287E05F9003BC4E2 /* WeatherViewModel.swift in Sources */,
 				2BC5B4E8287DF061003BC4E2 /* LeBaluchonApp.swift in Sources */,

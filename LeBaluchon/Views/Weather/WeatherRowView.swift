@@ -13,7 +13,7 @@ struct WeatherRowView: View {
     var body: some View {
         
             HStack(alignment: .center, spacing: 8) {
-                Image(systemName: "sun.max.fill")
+                weather.weather.first!.symbol
                     .font(.system(size: 44))
                 
                 Spacer()
