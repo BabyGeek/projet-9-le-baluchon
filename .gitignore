@@ -89,3 +89,7 @@ fastlane/test_output
 
 iOSInjectionProject/
 LeBaluchon.xcodeproj/project.xcworkspace/xcuserdata/mrsniikyz.xcuserdatad/UserInterfaceState.xcuserstate
+.DS_Store
+*/.DS_Store
+*/*/.DS_Store
+*/*/*/.DS_Store
