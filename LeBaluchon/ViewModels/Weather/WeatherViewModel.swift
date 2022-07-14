@@ -10,7 +10,7 @@ import Foundation
 
 class WeatherViewModel: ObservableObject {
     @Published var weathers: [Weather] = [Weather]()
-    private let url: String = "https://api.openweathermap.org/data/2.5/weather?lang=fr&units=metric"
+    private let url: String = "https://api.openweathermap.org/data/2.5/weather?lang=en&units=metric"
     private let apiKey: String = "1e3be892b4867f22812876984dd1d18f"
 
     public func perform(lat latitude: Double, lon longitude: Double) {
