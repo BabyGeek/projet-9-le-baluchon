@@ -12,7 +12,7 @@ struct WeatherView: View {
     
     var body: some View {
         NavigationView {
-            List(viewModel.weathers, id: \.self) { weather in
+            List(viewModel.weathers) { weather in
                 WeatherRowView(weather: weather)
             }
             .navigationTitle("Weather")

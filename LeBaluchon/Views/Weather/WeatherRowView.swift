@@ -29,10 +29,9 @@ struct WeatherRowView: View {
             Divider()
             
             Text(weather.weather.first!.description)
-                .font(.caption)
-                .frame(maxWidth: 50)
+                .font(.footnote)
+                .frame(maxWidth: 60)
         }
-        .clipShape(Capsule())
     }
 }
 
