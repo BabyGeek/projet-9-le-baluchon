@@ -12,12 +12,10 @@ struct WeatherView: View {
     
     var body: some View {
         NavigationView {
-            
             List(viewModel.weathers, id: \.self) { weather in
                 WeatherRowView(weather: weather)
             }
             .navigationTitle("Weather")
-            
         }
         .onAppear {
             viewModel.perform(lat: 40.713051, lon: -74.007233)
