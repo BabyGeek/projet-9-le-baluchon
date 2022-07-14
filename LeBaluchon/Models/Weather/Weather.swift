@@ -11,7 +11,7 @@ import SwiftUI
 struct Weather: Codable, Hashable {
     let name: String
     let sys: WheatherSys
-    let main: WheatherMain
+    let main: WeatherMain
     let weather: [WeatherType]
 }
 
@@ -49,7 +49,7 @@ struct WheatherSys: Codable, Hashable {
     let sunset: Double
 }
 
-struct WheatherMain: Codable, Hashable  {
+struct WeatherMain: Codable, Hashable  {
     let temp: Double
     let tempMin: Double
     let tempMax: Double
