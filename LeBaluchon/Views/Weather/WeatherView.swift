@@ -15,9 +15,7 @@ struct WeatherView: View {
             WeatherRowView(weather: weather)
         }
         .onAppear {
-            viewModel.perform(lat: 35, lon: 13)
-            viewModel.perform(lat: 13, lon: 35)
-            viewModel.perform(lat: 35, lon: 139)
+            viewModel.perform(lat: 43.125191, lon: 5.931040)
         }
     }
 }
