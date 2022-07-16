@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B5C692C288052E500593690 /* WeatherRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5C692B288052E500593690 /* WeatherRowView.swift */; };
 		2BC5B4E8287DF061003BC4E2 /* LeBaluchonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC5B4E7287DF061003BC4E2 /* LeBaluchonApp.swift */; };
 		2BC5B4EA287DF061003BC4E2 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC5B4E9287DF061003BC4E2 /* WeatherView.swift */; };
 		2BC5B4EC287DF064003BC4E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BC5B4EB287DF064003BC4E2 /* Assets.xcassets */; };
@@ -14,6 +15,10 @@
 		2BC5B4F9287DF064003BC4E2 /* LeBaluchonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC5B4F8287DF064003BC4E2 /* LeBaluchonTests.swift */; };
 		2BC5B503287DF064003BC4E2 /* LeBaluchonUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC5B502287DF064003BC4E2 /* LeBaluchonUITests.swift */; };
 		2BC5B505287DF064003BC4E2 /* LeBaluchonUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC5B504287DF064003BC4E2 /* LeBaluchonUITestsLaunchTests.swift */; };
+		2BC5B51E287E0190003BC4E2 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC5B51D287E0190003BC4E2 /* Weather.swift */; };
+		2BC5B51F287E0190003BC4E2 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC5B51D287E0190003BC4E2 /* Weather.swift */; };
+		2BC5B521287E05F9003BC4E2 /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC5B520287E05F9003BC4E2 /* WeatherViewModel.swift */; };
+		2BC5B522287E05F9003BC4E2 /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC5B520287E05F9003BC4E2 /* WeatherViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2B5C692B288052E500593690 /* WeatherRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherRowView.swift; sourceTree = "<group>"; };
 		2BC5B4E4287DF061003BC4E2 /* LeBaluchon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeBaluchon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BC5B4E7287DF061003BC4E2 /* LeBaluchonApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeBaluchonApp.swift; sourceTree = "<group>"; };
 		2BC5B4E9287DF061003BC4E2 /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
@@ -44,6 +50,8 @@
 		2BC5B4FE287DF064003BC4E2 /* LeBaluchonUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LeBaluchonUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BC5B502287DF064003BC4E2 /* LeBaluchonUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeBaluchonUITests.swift; sourceTree = "<group>"; };
 		2BC5B504287DF064003BC4E2 /* LeBaluchonUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeBaluchonUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		2BC5B51D287E0190003BC4E2 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
+		2BC5B520287E05F9003BC4E2 /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				2BC5B4E9287DF061003BC4E2 /* WeatherView.swift */,
+				2B5C692B288052E500593690 /* WeatherRowView.swift */,
 			);
 			path = Weather;
 			sourceTree = "<group>";
@@ -184,6 +193,7 @@
 		2BC5B517287DF2E8003BC4E2 /* Weather */ = {
 			isa = PBXGroup;
 			children = (
+				2BC5B51D287E0190003BC4E2 /* Weather.swift */,
 			);
 			path = Weather;
 			sourceTree = "<group>";
@@ -205,6 +215,7 @@
 		2BC5B51A287DF309003BC4E2 /* Weather */ = {
 			isa = PBXGroup;
 			children = (
+				2BC5B520287E05F9003BC4E2 /* WeatherViewModel.swift */,
 			);
 			path = Weather;
 			sourceTree = "<group>";
@@ -354,6 +365,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BC5B4EA287DF061003BC4E2 /* WeatherView.swift in Sources */,
+				2B5C692C288052E500593690 /* WeatherRowView.swift in Sources */,
+				2BC5B51E287E0190003BC4E2 /* Weather.swift in Sources */,
+				2BC5B521287E05F9003BC4E2 /* WeatherViewModel.swift in Sources */,
 				2BC5B4E8287DF061003BC4E2 /* LeBaluchonApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -362,6 +376,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BC5B522287E05F9003BC4E2 /* WeatherViewModel.swift in Sources */,
+				2BC5B51F287E0190003BC4E2 /* Weather.swift in Sources */,
 				2BC5B4F9287DF064003BC4E2 /* LeBaluchonTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
