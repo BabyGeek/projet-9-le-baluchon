@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct CurrencyResult {
-    
+struct ExchangeRateResult {
+    let value: Double
 }
