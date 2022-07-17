@@ -12,13 +12,13 @@ struct WeatherRowView: View {
     
     var body: some View {
         
-        HStack(alignment: .center, spacing: 8) {
+        HStack(alignment: .center, spacing: 5) {
             weather.weather.first!.symbol
-                .font(.system(size: 44))
+                .font(.system(size: 32))
             
             Spacer()
             
-            VStack(alignment: .center, spacing: 8) {
+            VStack(alignment: .center, spacing: 5) {
                 Text(weather.name)
                     .font(.title3)
                 
