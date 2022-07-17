@@ -11,12 +11,16 @@ import Foundation
 class WeatherViewModel: ObservableObject {
     @Published var target: Weather?
     @Published var favorites: [Weather] = [Weather]()
-    private let url: String = "https://api.openweathermap.org/data/2.5/weather?lang=en&units=metric"
-    private let apiKey: String = "1e3be892b4867f22812876984dd1d18f"
+    private let url: String = ApiConstants.weatherAPIURL
+    private let apiKey: String = ApiConstants.weatherAPIKEY
+    var lang = "en"
+    var units = "metric"
     
     public func perform(lat latitude: Double, lon longitude: Double, setTarget: Bool = false) {
         var url = self.url
         
+        url.append("?lan=\(lang)")
+        url.append("&units=\(units)")
         url.append("&lat=\(latitude)")
         url.append("&lon=\(longitude)")
         url.append("&appid=\(self.apiKey)")
