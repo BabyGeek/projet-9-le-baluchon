@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B2F094C2882D9560013E438 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2F094B2882D9560013E438 /* TabBarView.swift */; };
 		2B5C692C288052E500593690 /* WeatherRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5C692B288052E500593690 /* WeatherRowView.swift */; };
 		2BC5B4E8287DF061003BC4E2 /* LeBaluchonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC5B4E7287DF061003BC4E2 /* LeBaluchonApp.swift */; };
 		2BC5B4EA287DF061003BC4E2 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC5B4E9287DF061003BC4E2 /* WeatherView.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2B2F094B2882D9560013E438 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		2B5C692B288052E500593690 /* WeatherRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherRowView.swift; sourceTree = "<group>"; };
 		2BC5B4E4287DF061003BC4E2 /* LeBaluchon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeBaluchon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BC5B4E7287DF061003BC4E2 /* LeBaluchonApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeBaluchonApp.swift; sourceTree = "<group>"; };
@@ -79,6 +81,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B2F094A2882D9440013E438 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				2B2F094B2882D9560013E438 /* TabBarView.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
 		2BC5B4DB287DF061003BC4E2 = {
 			isa = PBXGroup;
 			children = (
@@ -140,6 +150,7 @@
 		2BC5B511287DF1AF003BC4E2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2B2F094A2882D9440013E438 /* TabBar */,
 				2BC5B514287DF1C5003BC4E2 /* Weather */,
 				2BC5B513287DF1BC003BC4E2 /* Translation */,
 				2BC5B512287DF1B4003BC4E2 /* Currency */,
@@ -368,6 +379,7 @@
 				2B5C692C288052E500593690 /* WeatherRowView.swift in Sources */,
 				2BC5B51E287E0190003BC4E2 /* Weather.swift in Sources */,
 				2BC5B521287E05F9003BC4E2 /* WeatherViewModel.swift in Sources */,
+				2B2F094C2882D9560013E438 /* TabBarView.swift in Sources */,
 				2BC5B4E8287DF061003BC4E2 /* LeBaluchonApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -11,7 +11,7 @@ import SwiftUI
 struct LeBaluchonApp: App {
     var body: some Scene {
         WindowGroup {
-            WeatherView()
+            TabBarView()
         }
     }
 }

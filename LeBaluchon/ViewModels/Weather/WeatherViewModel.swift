@@ -48,5 +48,9 @@ class WeatherViewModel: ObservableObject {
         
         task.resume()
     }
+    
+    public func cleanResults() {
+        weathers = [Weather]()
+    }
 }
 

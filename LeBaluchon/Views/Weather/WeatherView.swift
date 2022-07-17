@@ -30,6 +30,7 @@ struct WeatherView: View {
             .navigationTitle("Weather")
         }
         .onAppear {
+            viewModel.cleanResults()
             viewModel.perform(lat: 40.713051, lon: -74.007233, setTarget: true)
             viewModel.perform(lat: 43.125191, lon: 5.931040)
             viewModel.perform(lat: 10.382129, lon: 105.434076)
