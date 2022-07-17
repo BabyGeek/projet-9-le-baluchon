@@ -19,9 +19,9 @@ enum TabBarItem: Hashable {
     
     var iconName: String {
         switch self {
-        case .weather: return "house"
-        case .exchange: return "heart"
-        case .translate: return "person"
+        case .weather: return "thermometer.sun"
+        case .exchange: return "banknote"
+        case .translate: return "captions.bubble"
         }
     }
     
