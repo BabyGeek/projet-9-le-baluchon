@@ -10,4 +10,7 @@ import Foundation
 struct ApiConstants {
     static let weatherAPIURL = "https://api.openweathermap.org/data/2.5/weather"
     static let weatherAPIKEY = "1e3be892b4867f22812876984dd1d18f"
+    
+    static let currencyAPIURL = ""
+    static let currencyAPIKEY = ""
 }
