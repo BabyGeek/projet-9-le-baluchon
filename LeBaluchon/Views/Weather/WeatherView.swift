@@ -12,21 +12,19 @@ struct WeatherView: View {
     
     var body: some View {
         NavigationView {
-                List() {
-                    if let target = viewModel.target {
-                        Section("Destination") {
-                            WeatherRowView(weather: target)
-                        }
-                    }
-                    
-                    Section("Favorites") {
-                        ForEach(viewModel.favorites.indices, id: \.self) { index in
-                            if let weather = viewModel.favorites[index] {
-                                WeatherRowView(weather: weather)
-                            }
-                        }
+            List() {
+                if let target = viewModel.target {
+                    Section("Destination") {
+                        WeatherRowView(weather: target)
                     }
                 }
+                
+                Section("Favorites") {
+                    ForEach(viewModel.favorites, id: \.self) { weather in
+                        WeatherRowView(weather: weather)
+                    }
+                }
+            }
             .navigationTitle("Weather")
         }
         .onAppear {

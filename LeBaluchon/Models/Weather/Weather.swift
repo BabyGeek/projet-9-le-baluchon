@@ -8,8 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct Weather: Codable, Identifiable, Hashable {
-    let id: Double
+struct Weather: Codable, Hashable {
     let name: String
     let sys: WheatherSys
     let main: WeatherMain
