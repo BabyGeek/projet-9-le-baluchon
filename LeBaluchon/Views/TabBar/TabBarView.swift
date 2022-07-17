@@ -7,10 +7,32 @@
 
 import SwiftUI
 
-struct TabBarView: View {
+struct AppTabBarView: View {
     @State private var selection: String = "weather"
+    @State private var selectedTab: TabBarItem = .weather
     
     var body: some View {
+        AppTabBarContainerView(selection: $selectedTab) {
+            WeatherView()
+                .tabBarItem(tab: .weather, selection: $selectedTab)
+            
+            Color.red
+                .tabBarItem(tab: .exchange, selection: $selectedTab)
+            
+            Color.green
+                .tabBarItem(tab: .translate, selection: $selectedTab)
+        }
+    }
+}
+
+struct TabBarView_Previews: PreviewProvider {    
+    static var previews: some View {
+        AppTabBarView()
+    }
+}
+
+extension AppTabBarView {
+    private var defaultTabBarView: some View {
         TabView(selection: $selection) {
             WeatherView()
                 .tabItem {
@@ -21,7 +43,7 @@ struct TabBarView: View {
             Color.blue
                 .tabItem {
                     Image(systemName: "heart")
-                    Text("Exhange")
+                    Text("Exchange")
                 }
             
             Color.green
@@ -30,11 +52,5 @@ struct TabBarView: View {
                     Text("Translate")
                 }
         }
-    }
-}
-
-struct TabBarView_Previews: PreviewProvider {
-    static var previews: some View {
-        TabBarView()
     }
 }
