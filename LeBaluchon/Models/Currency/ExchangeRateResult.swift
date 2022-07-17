@@ -7,6 +7,20 @@
 
 import Foundation
 
-struct ExchangeRateResult {
-    let value: Double
+struct ExchangeRateResult: Codable, Hashable {
+    let success: Bool
+    let query: ExchangeRateQuery
+    let info: ExchangeRateInfo
+    let result: Double
+}
+
+struct ExchangeRateQuery: Codable, Hashable {
+    let from: String
+    let to: String
+    let amount: Double
+}
+
+struct ExchangeRateInfo: Codable, Hashable {
+    let timestamp: Int
+    let rate: Double
 }
