@@ -50,7 +50,7 @@ class WeatherViewModel: ObservableObject {
     }
     
     public func cleanResults() {
-        weathers = [Weather]()
+        favorites = [Weather]()
     }
 }
 

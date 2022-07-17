@@ -9,31 +9,23 @@ import SwiftUI
 
 struct TabBarView: View {
     @State private var selection: String = "weather"
+    @State private var selectedTab: TabBarItem = .weather
     
     var body: some View {
-        TabView(selection: $selection) {
+        AppTabBarContainerView(selection: $selectedTab) {
             WeatherView()
-                .tabItem {
-                    Image(systemName: "house")
-                    Text("Weather")
-                }
+                .tabBarItem(tab: .weather, selection: $selectedTab)
             
-            Color.blue
-                .tabItem {
-                    Image(systemName: "heart")
-                    Text("Exhange")
-                }
+            Color.red
+                .tabBarItem(tab: .exchange, selection: $selectedTab)
             
             Color.green
-                .tabItem {
-                    Image(systemName: "person")
-                    Text("Translate")
-                }
+                .tabBarItem(tab: .translate, selection: $selectedTab)
         }
     }
 }
 
-struct TabBarView_Previews: PreviewProvider {
+struct TabBarView_Previews: PreviewProvider {    
     static var previews: some View {
         TabBarView()
     }

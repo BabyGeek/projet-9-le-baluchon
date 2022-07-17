@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		2B2F094C2882D9560013E438 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2F094B2882D9560013E438 /* TabBarView.swift */; };
+		2B2F094E288417EC0013E438 /* AppTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2F094D288417EC0013E438 /* AppTabBarView.swift */; };
+		2B2F095128841B670013E438 /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2F095028841B670013E438 /* TabBarItem.swift */; };
+		2B2F095328842DBB0013E438 /* AppTabBarContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2F095228842DBB0013E438 /* AppTabBarContainerView.swift */; };
+		2B2F09552884309F0013E438 /* TabBarItemsPreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2F09542884309F0013E438 /* TabBarItemsPreferenceKey.swift */; };
 		2B5C692C288052E500593690 /* WeatherRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5C692B288052E500593690 /* WeatherRowView.swift */; };
 		2BC5B4E8287DF061003BC4E2 /* LeBaluchonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC5B4E7287DF061003BC4E2 /* LeBaluchonApp.swift */; };
 		2BC5B4EA287DF061003BC4E2 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC5B4E9287DF061003BC4E2 /* WeatherView.swift */; };
@@ -41,6 +45,10 @@
 
 /* Begin PBXFileReference section */
 		2B2F094B2882D9560013E438 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
+		2B2F094D288417EC0013E438 /* AppTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabBarView.swift; sourceTree = "<group>"; };
+		2B2F095028841B670013E438 /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
+		2B2F095228842DBB0013E438 /* AppTabBarContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabBarContainerView.swift; sourceTree = "<group>"; };
+		2B2F09542884309F0013E438 /* TabBarItemsPreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemsPreferenceKey.swift; sourceTree = "<group>"; };
 		2B5C692B288052E500593690 /* WeatherRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherRowView.swift; sourceTree = "<group>"; };
 		2BC5B4E4287DF061003BC4E2 /* LeBaluchon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeBaluchon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BC5B4E7287DF061003BC4E2 /* LeBaluchonApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeBaluchonApp.swift; sourceTree = "<group>"; };
@@ -85,8 +93,26 @@
 			isa = PBXGroup;
 			children = (
 				2B2F094B2882D9560013E438 /* TabBarView.swift */,
+				2B2F094D288417EC0013E438 /* AppTabBarView.swift */,
+				2B2F095228842DBB0013E438 /* AppTabBarContainerView.swift */,
 			);
 			path = TabBar;
+			sourceTree = "<group>";
+		};
+		2B2F094F28841B570013E438 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				2B2F095028841B670013E438 /* TabBarItem.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		2B2F0956288432890013E438 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				2B2F09542884309F0013E438 /* TabBarItemsPreferenceKey.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		2BC5B4DB287DF061003BC4E2 = {
@@ -112,6 +138,7 @@
 		2BC5B4E6287DF061003BC4E2 /* LeBaluchon */ = {
 			isa = PBXGroup;
 			children = (
+				2B2F0956288432890013E438 /* Utilities */,
 				2BC5B516287DF2C6003BC4E2 /* Models */,
 				2BC5B511287DF1AF003BC4E2 /* Views */,
 				2BC5B515287DF2BA003BC4E2 /* ViewModels */,
@@ -194,6 +221,7 @@
 		2BC5B516287DF2C6003BC4E2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2B2F094F28841B570013E438 /* TabBar */,
 				2BC5B519287DF2F7003BC4E2 /* Currency */,
 				2BC5B518287DF2EE003BC4E2 /* Translation */,
 				2BC5B517287DF2E8003BC4E2 /* Weather */,
@@ -375,12 +403,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B2F094E288417EC0013E438 /* AppTabBarView.swift in Sources */,
 				2BC5B4EA287DF061003BC4E2 /* WeatherView.swift in Sources */,
 				2B5C692C288052E500593690 /* WeatherRowView.swift in Sources */,
 				2BC5B51E287E0190003BC4E2 /* Weather.swift in Sources */,
 				2BC5B521287E05F9003BC4E2 /* WeatherViewModel.swift in Sources */,
 				2B2F094C2882D9560013E438 /* TabBarView.swift in Sources */,
+				2B2F095328842DBB0013E438 /* AppTabBarContainerView.swift in Sources */,
+				2B2F095128841B670013E438 /* TabBarItem.swift in Sources */,
 				2BC5B4E8287DF061003BC4E2 /* LeBaluchonApp.swift in Sources */,
+				2B2F09552884309F0013E438 /* TabBarItemsPreferenceKey.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
