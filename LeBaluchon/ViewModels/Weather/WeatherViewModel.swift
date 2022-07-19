@@ -1,5 +1,5 @@
 //
-//  WeatherManager.swift
+//  WeatherViewModel.swift
 //  LeBaluchon
 //
 //  Created by Paul Oggero on 12/07/2022.
