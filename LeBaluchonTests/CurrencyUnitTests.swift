@@ -5,31 +5,67 @@
 //  Created by Paul Oggero on 19/07/2022.
 //
 
+@testable import LeBaluchon
 import XCTest
 
 class CurrencyUnitTests: XCTestCase {
+    var viewModel: CurrencyViewModel!
+    
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    @MainActor override func setUp() {
+        super.setUp()
+        viewModel = CurrencyViewModel()
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    func testGivenNewWhenCheckingShouldBeNilOrEmpty() throws {
+        XCTAssertNil(viewModel.result)
+        XCTAssertTrue(viewModel.symbols.isEmpty)
     }
+    
+    func testGivenWeatherWhenFetchingRateThenModelShouldBeBeFrom1EURToVND() throws {
+        let url = Bundle.main.url(forResource: "rate", withExtension: "json")!
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+        viewModel.loadData(urlRequest: url) { (result: ExchangeRateResult) in
+            XCTAssertEqual(result.from, "EUR")
+            XCTAssertEqual(result.to, "VND")
+            XCTAssertEqual(result.result, 23661.5627)
+        } onFailure: { error in
+            XCTAssertNil(error)
         }
     }
+    
+    func testGivenWeatherWhenFetchingRateThenModelShouldBeBeFrom3EURToVND() throws {
+        let url = Bundle.main.url(forResource: "exchange", withExtension: "json")!
 
+        viewModel.loadData(urlRequest: url) { (result: ExchangeRateResult) in
+            XCTAssertEqual(result.from, "EUR")
+            XCTAssertEqual(result.to, "VND")
+            XCTAssertEqual(result.rate, 23661.5627)
+            XCTAssertEqual(result.result, 70984.6881)
+        } onFailure: { error in
+            XCTAssertNil(error)
+        }
+    }
+    
+    func testGivenWeatherWhenFetchingSymbolsThenModelShouldNotBeEmpty() throws {
+        let url = Bundle.main.url(forResource: "symbols", withExtension: "json")!
+
+        viewModel.loadData(urlRequest: url) { (dictionnary: CurrencyDictionnary) in
+            XCTAssertFalse(dictionnary.currencies.isEmpty)
+        } onFailure: { error in
+            XCTAssertNil(error)
+        }
+    }
+    
+    func testGivenWeatherWhenFetchingSymbolsThenFirstSymbolShouldBeEUR() throws {
+        let url = Bundle.main.url(forResource: "symbols", withExtension: "json")!
+        viewModel.loadData(urlRequest: url) { (dictionnary: CurrencyDictionnary) in
+            let symbol = dictionnary.currencies.first { symbol in
+                symbol.code == "EUR"
+            }
+            XCTAssertEqual(symbol?.getSymbol(), NSLocale(localeIdentifier: "EUR").displayName(forKey: .currencySymbol, value: "EUR"))
+        } onFailure: { error in
+            XCTAssertNil(error)
+        }
+    }
 }

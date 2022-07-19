@@ -1,6 +1,13 @@
 {
-    "type": "MultiPolygon",
-    "coordinates": [
-        
-    ]
+  "result": "success",
+  "documentation": "https://www.exchangerate-api.com/docs",
+  "terms_of_use": "https://www.exchangerate-api.com/terms",
+  "time_last_update_unix": 1658188801,
+  "time_last_update_utc": "Tue, 19 Jul 2022 00:00:01 +0000",
+  "time_next_update_unix": 1658275201,
+  "time_next_update_utc": "Wed, 20 Jul 2022 00:00:01 +0000",
+  "base_code": "EUR",
+  "target_code": "VND",
+  "conversion_rate": 23661.5627,
+  "conversion_result": 70984.6881
 }
