@@ -8,19 +8,18 @@
 import Foundation
 
 struct ExchangeRateResult: Codable, Hashable {
-    let success: Bool
-    let query: ExchangeRateQuery
-    let info: ExchangeRateInfo
-    let result: Double
-}
-
-struct ExchangeRateQuery: Codable, Hashable {
+    let success: String
     let from: String
     let to: String
-    let amount: Double
-}
-
-struct ExchangeRateInfo: Codable, Hashable {
-    let timestamp: Int
+    let result: Double
     let rate: Double
+    
+    
+    enum CodingKeys: String, CodingKey {
+        case success = "result"
+        case from = "base_code"
+        case to = "target_code"
+        case result = "conversion_result"
+        case rate = "conversion_rate"
+    }
 }
