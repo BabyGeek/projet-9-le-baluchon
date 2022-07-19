@@ -31,9 +31,7 @@ class CurrencyViewModel: ObservableObject {
         guard let url = URL(string: url) else {
             return
         }
-        
-        print(url)
-        
+                
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data, error == nil else {
                 print(error!.localizedDescription)
@@ -56,7 +54,6 @@ class CurrencyViewModel: ObservableObject {
     }
     
     public func performSymbols() {
-        print(self.symbolsLoaded)
         if self.symbolsLoaded {
             // Already loaded
             return
