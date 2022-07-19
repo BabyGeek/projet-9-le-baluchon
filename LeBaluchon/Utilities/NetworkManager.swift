@@ -21,7 +21,10 @@ class NetworkManager {
             
             do {
                 let object = try JSONDecoder().decode(T.self, from: data)
-                success(object)
+                
+                DispatchQueue.main.async {
+                    success(object)
+                }
             } catch {
                 failure(error)
             }

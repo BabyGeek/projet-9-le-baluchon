@@ -26,17 +26,15 @@ class WeatherViewModel: NetworkManager, ObservableObject {
             return
         }
         
-        DispatchQueue.main.async {
-            self.loadData(urlRequest: url, onSuccess: { (weather: Weather) in
-                if(setTarget) {
-                    self.target = weather
-                }else{
-                    self.favorites.append(weather)
-                }
-            }, onFailure: { error in
-                print(error.localizedDescription)
-            })
-        }
+        self.loadData(urlRequest: url, onSuccess: { (weather: Weather) in
+            if(setTarget) {
+                self.target = weather
+            }else{
+                self.favorites.append(weather)
+            }
+        }, onFailure: { error in
+            print(error.localizedDescription)
+        })
     }
     
     public func cleanResults() {
