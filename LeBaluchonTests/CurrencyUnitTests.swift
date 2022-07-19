@@ -1,14 +1,13 @@
 //
-//  LeBaluchonTests.swift
+//  CurrencyUnitTests.swift
 //  LeBaluchonTests
 //
-//  Created by Paul Oggero on 12/07/2022.
+//  Created by Paul Oggero on 19/07/2022.
 //
 
 import XCTest
-@testable import LeBaluchon
 
-class LeBaluchonTests: XCTestCase {
+class CurrencyUnitTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
