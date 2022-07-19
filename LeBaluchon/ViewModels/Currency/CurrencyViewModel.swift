@@ -22,7 +22,7 @@ class CurrencyViewModel: NetworkManager, ObservableObject {
     }
     
     public func performFor(from: String, to: String, amount: Double) {
-
+        
         let params: [Any] = [
             from,
             to,
@@ -33,14 +33,13 @@ class CurrencyViewModel: NetworkManager, ObservableObject {
             return
         }
         
-        DispatchQueue.main.async {
-            self.loadData(
-                urlRequest: url, onSuccess: { result in
-                    self.result = result
-                }, onFailure: { error in
-                    print(error)
-                })
-        }
+        self.loadData(
+            urlRequest: url, onSuccess: { result in
+                self.result = result
+            }, onFailure: { error in
+                print(error)
+            })
+        
         
     }
     
@@ -54,17 +53,15 @@ class CurrencyViewModel: NetworkManager, ObservableObject {
             return
         }
         
-        DispatchQueue.main.async {
-            self.loadData(
-                urlRequest: url, onSuccess: { (dictionnary: CurrencyDictionnary) in
-                    self.symbols = dictionnary.currencies
-                    self.symbolsLoaded = true
-                    
-                }, onFailure: { error in
-                    print(error.localizedDescription)
-                })
-            
-        }
+        self.loadData(
+            urlRequest: url, onSuccess: { (dictionnary: CurrencyDictionnary) in
+                self.symbols = dictionnary.currencies
+                self.symbolsLoaded = true
+                
+            }, onFailure: { error in
+                print(error.localizedDescription)
+            })
+        
     }
     
     
