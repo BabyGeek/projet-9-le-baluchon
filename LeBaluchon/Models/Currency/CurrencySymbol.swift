@@ -10,8 +10,9 @@ import Foundation
 struct CurrencySymbol: Codable, Hashable {
     var code: String
     let name: String
-    
-    
+}
+
+extension CurrencySymbol {
     public func getSymbol() -> String? {
         let locale = NSLocale(localeIdentifier: code)
         if locale.displayName(forKey: .currencySymbol, value: code) == code {
