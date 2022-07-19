@@ -7,11 +7,12 @@
 
 import Foundation
 
-class CurrencyViewModel: ObservableObject {
+class CurrencyViewModel: NetworkManager, ObservableObject {
     private let url: String = ApiConstants.currencyAPIURL
     private let apiKey: String = ApiConstants.currencyAPIKEY
     
     @Published var result: ExchangeRateResult?
+    
     @Published var symbols: [CurrencySymbol] = [CurrencySymbol]()
     private var symbolsLoaded = false
     
@@ -21,36 +22,26 @@ class CurrencyViewModel: ObservableObject {
     }
     
     public func performFor(from: String, to: String, amount: Double) {
-        var url = self.url.replacingOccurrences(of: "{apiKey}", with: self.apiKey, options: .literal, range: nil)
-        url = url.replacingOccurrences(of: "{resource}", with: "pair", options: .literal, range: nil)
+
+        let params: [Any] = [
+            from,
+            to,
+            amount
+        ]
         
-        url.append("/\(from)")
-        url.append("/\(to)")
-        url.append("/\(amount)")
-        
-        guard let url = URL(string: url) else {
+        guard let url = self.getURL(resource: "pair", params: params) else {
             return
         }
-                
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let data = data, error == nil else {
-                print(error!.localizedDescription)
-                return
-            }
-            
-            // Convert to JSON
-            do {
-                let result = try JSONDecoder().decode(ExchangeRateResult.self, from: data)
-                
-                DispatchQueue.main.async {
+        
+        DispatchQueue.main.async {
+            self.loadData(
+                urlRequest: url, onSuccess: { result in
                     self.result = result
-                }
-            } catch {
-                print(error)
-            }
+                }, onFailure: { error in
+                    print(error)
+                })
         }
         
-        task.resume()
     }
     
     public func performSymbols() {
@@ -59,32 +50,35 @@ class CurrencyViewModel: ObservableObject {
             return
         }
         
-        var url = self.url.replacingOccurrences(of: "{apiKey}", with: self.apiKey, options: .literal, range: nil)
-        url = url.replacingOccurrences(of: "{resource}", with: "codes", options: .literal, range: nil)
-        
-        guard let url = URL(string: url) else {
+        guard let url = self.getURL(resource: "codes") else {
             return
         }
         
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let data = data, error == nil else {
-                print(error!.localizedDescription)
-                return
-            }
-            
-            // Convert to JSON
-            do {
-                let result = try JSONDecoder().decode(CurrencyDictionnary.self, from: data)
-                DispatchQueue.main.async {
-                    self.symbols = result.currencies
+        DispatchQueue.main.async {
+            self.loadData(
+                urlRequest: url, onSuccess: { (dictionnary: CurrencyDictionnary) in
+                    self.symbols = dictionnary.currencies
                     self.symbolsLoaded = true
-                }
-            } catch {
-                print(error.localizedDescription)
+                    
+                }, onFailure: { error in
+                    print(error.localizedDescription)
+                })
+            
+        }
+    }
+    
+    
+    private func getURL(resource: String, params: [Any]? = nil) -> URL? {
+        var url = self.url.replacingOccurrences(of: "{apiKey}", with: self.apiKey)
+        url = url.replacingOccurrences(of: "{resource}", with: resource)
+        
+        if let params = params {
+            for param in params {
+                url.append("/\(param)")
             }
         }
         
-        task.resume()
+        return URL(string: url)
     }
 }
 

@@ -8,7 +8,7 @@
 import Foundation
 
 
-class WeatherViewModel: ObservableObject {
+class WeatherViewModel: NetworkManager, ObservableObject {
     @Published var target: Weather?
     @Published var favorites: [Weather] = [Weather]()
     private let url: String = ApiConstants.weatherAPIURL
@@ -17,44 +17,48 @@ class WeatherViewModel: ObservableObject {
     var units = "metric"
     
     public func perform(lat latitude: Double, lon longitude: Double, setTarget: Bool = false) {
-        var url = self.url
+        let params = [
+            URLQueryItem(name: "lat", value: latitude.formatted()),
+            URLQueryItem(name: "lon", value: longitude.formatted())
+        ]
         
-        url.append("?lan=\(lang)")
-        url.append("&units=\(units)")
-        url.append("&lat=\(latitude)")
-        url.append("&lon=\(longitude)")
-        url.append("&appid=\(self.apiKey)")
-        
-        guard let url = URL(string: url) else {
+        guard let url = self.getQueryURL(params: params) else {
             return
         }
         
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let data = data, error == nil else {
-                return
-            }
-            
-            // Convert to JSON
-            do {
-                let weather = try JSONDecoder().decode(Weather.self, from: data)
-                
-                DispatchQueue.main.async {
-                    if(setTarget) {
-                        self.target = weather
-                    }else{
-                        self.favorites.append(weather)
-                    }
+        DispatchQueue.main.async {
+            self.loadData(urlRequest: url, onSuccess: { (weather: Weather) in
+                if(setTarget) {
+                    self.target = weather
+                }else{
+                    self.favorites.append(weather)
                 }
-            } catch {
-                print(error)
-            }
+            }, onFailure: { error in
+                print(error.localizedDescription)
+            })
         }
-        
-        task.resume()
     }
     
     public func cleanResults() {
         favorites = [Weather]()
+    }
+    
+    private func getQueryURL(params: [URLQueryItem]) -> URL? {
+        var urlComponent = URLComponents(string: self.url)
+        
+        let baseParams = [
+            URLQueryItem(name: "lan", value: lang),
+            URLQueryItem(name: "units", value: units),
+            URLQueryItem(name: "appid", value: apiKey),
+        ]
+        
+        urlComponent?.queryItems = params + baseParams
+        
+        if let urlComponent = urlComponent {
+            return urlComponent.url
+        }
+        
+        return nil
     }
 }
 
