@@ -16,7 +16,7 @@ struct TabBarView: View {
             WeatherView()
                 .tabBarItem(tab: .weather, selection: $selectedTab)
             
-            Color.red
+            CurrencyView()
                 .tabBarItem(tab: .exchange, selection: $selectedTab)
             
             Color.green
