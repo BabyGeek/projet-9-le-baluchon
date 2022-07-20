@@ -25,26 +25,34 @@ class WeatherUnitTests: XCTestCase {
     
     func testGivenWeatherWhenFetchingWeatherThenModelShouldBe30AtToulonAndImageCloudSun() throws {
         let url = Bundle.main.url(forResource: "weather", withExtension: "json")!
+        let expectation = XCTestExpectation()
 
         viewModel.loadData(urlRequest: url) { (weather: Weather) in
             XCTAssertEqual(weather.main.temp, 30)
             XCTAssertEqual(weather.name, "Toulon")
             XCTAssertEqual(weather.weather.first!.symbol, Image(systemName: "cloud.sun"))
+            expectation.fulfill()
         } onFailure: { error in
-            XCTAssertNil(error)
+            //
         }
+        
+        wait(for: [expectation], timeout: 3)
     }
     
     func testGivenWeatherWhenFetchingOtherWeatherThenModelShouldBe34AtLongXuyenAndImageSun() throws {
         let url = Bundle.main.url(forResource: "other-weather", withExtension: "json")!
+        let expectation = XCTestExpectation()
 
         viewModel.loadData(urlRequest: url) { (weather: Weather) in
             XCTAssertEqual(weather.main.temp, 34)
             XCTAssertEqual(weather.name, "Long Xuyen")
             XCTAssertEqual(weather.weather.first!.symbol, Image(systemName: "sun.max"))
+            expectation.fulfill()
         } onFailure: { error in
-            XCTAssertNil(error)
+            //
         }
+        
+        wait(for: [expectation], timeout: 3)
     }
     
     func testGivenArrayOfWeatherTypeIdsWhenGoingThoughtThenGetAllSymbolsPossibilities() {
