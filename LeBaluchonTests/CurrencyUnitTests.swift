@@ -24,48 +24,62 @@ class CurrencyUnitTests: XCTestCase {
     
     func testGivenWeatherWhenFetchingRateThenModelShouldBeBeFrom1EURToVND() throws {
         let url = Bundle.main.url(forResource: "rate", withExtension: "json")!
+        let expectation = XCTestExpectation()
 
         viewModel.loadData(urlRequest: url) { (result: ExchangeRateResult) in
             XCTAssertEqual(result.from, "EUR")
             XCTAssertEqual(result.to, "VND")
             XCTAssertEqual(result.result, 23661.5627)
+            expectation.fulfill()
         } onFailure: { error in
-            XCTAssertNil(error)
+            //
         }
+        wait(for: [expectation], timeout: 3)
     }
     
     func testGivenWeatherWhenFetchingRateThenModelShouldBeBeFrom3EURToVND() throws {
         let url = Bundle.main.url(forResource: "exchange", withExtension: "json")!
-
-        viewModel.loadData(urlRequest: url) { (result: ExchangeRateResult) in
+        let expectation = XCTestExpectation()
+        
+        viewModel.loadData(urlRequest: url, onSuccess: { (result: ExchangeRateResult) in
             XCTAssertEqual(result.from, "EUR")
             XCTAssertEqual(result.to, "VND")
             XCTAssertEqual(result.rate, 23661.5627)
             XCTAssertEqual(result.result, 70984.6881)
-        } onFailure: { error in
-            XCTAssertNil(error)
-        }
+            expectation.fulfill()
+        }, onFailure: { error in
+            //
+        })
+        wait(for: [expectation], timeout: 3)
     }
     
     func testGivenWeatherWhenFetchingSymbolsThenModelShouldNotBeEmpty() throws {
         let url = Bundle.main.url(forResource: "symbols", withExtension: "json")!
+        let expectation = XCTestExpectation()
 
         viewModel.loadData(urlRequest: url) { (dictionnary: CurrencyDictionnary) in
             XCTAssertFalse(dictionnary.currencies.isEmpty)
+            expectation.fulfill()
         } onFailure: { error in
-            XCTAssertNil(error)
+            //
         }
+        wait(for: [expectation], timeout: 3)
     }
     
-    func testGivenWeatherWhenFetchingSymbolsThenFirstSymbolShouldBeEUR() throws {
+    func testGivenWeatherWhenFetchingSymbolWhereCodeEURThenSymbolShouldBe€() throws {
         let url = Bundle.main.url(forResource: "symbols", withExtension: "json")!
+        let expectation = XCTestExpectation()
+        
         viewModel.loadData(urlRequest: url) { (dictionnary: CurrencyDictionnary) in
             let symbol = dictionnary.currencies.first { symbol in
                 symbol.code == "EUR"
             }
-            XCTAssertEqual(symbol?.getSymbol(), NSLocale(localeIdentifier: "EUR").displayName(forKey: .currencySymbol, value: "EUR"))
+
+            XCTAssertEqual(symbol!.getSymbol(), NSLocale(localeIdentifier: "EUR").displayName(forKey: .currencySymbol, value: "EUR"))
+            expectation.fulfill()
         } onFailure: { error in
-            XCTAssertNil(error)
+            //
         }
+        wait(for: [expectation], timeout: 3)
     }
 }

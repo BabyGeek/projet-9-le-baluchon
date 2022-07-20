@@ -80,7 +80,7 @@ extension CurrencyView {
 
 extension CurrencyView {
     private func updateResult() {
-        viewModel.performFor(from: from, to: to, amount: amount)
+        viewModel.perform(from: from, to: to, amount: amount)
     }
 }
 

@@ -16,12 +16,7 @@ class CurrencyViewModel: NetworkManager, ObservableObject {
     @Published var symbols: [CurrencySymbol] = [CurrencySymbol]()
     private var symbolsLoaded = false
     
-    
-    public func perform(from: String, to: String) {
-        self.performFor(from: from, to: to, amount: 1)
-    }
-    
-    public func performFor(from: String, to: String, amount: Double) {
+    public func perform(from: String, to: String, amount: Double = 1.0) {
         
         let params: [Any] = [
             from,
