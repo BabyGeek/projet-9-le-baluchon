@@ -9,13 +9,18 @@ import Foundation
 
 
 class NetworkManager {
-    func loadData<T:Decodable>(urlRequest url: URL, onSuccess success: @escaping (T) -> (), onFailure failure: @escaping (Error) -> ()) {
+    func loadData<T:Decodable>(urlRequest url: URL, onSuccess success: @escaping (T) -> (), onFailure failure: @escaping (NetworkError) -> ()) {
         let task = URLSession.shared.dataTask(with: url)
         {
             data, response, error in
             
-            guard let data = data, error == nil else {
-                failure(error!)
+            guard let data = data else {
+                failure(.loadDataError)
+                return
+            }
+            
+            if let _ = error {
+                failure(.loadDataError)
                 return
             }
             
@@ -26,7 +31,7 @@ class NetworkManager {
                     success(object)
                 }
             } catch {
-                failure(error)
+                failure(.failure)
             }
             
         }
