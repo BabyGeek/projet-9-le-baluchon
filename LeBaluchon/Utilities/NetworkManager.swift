@@ -14,12 +14,7 @@ class NetworkManager {
         {
             data, response, error in
             
-            guard let data = data else {
-                failure(.loadDataError)
-                return
-            }
-            
-            if let _ = error {
+            guard let data = data, error == nil else {
                 failure(.loadDataError)
                 return
             }

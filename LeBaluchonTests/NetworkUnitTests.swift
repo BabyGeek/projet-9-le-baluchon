@@ -49,7 +49,7 @@ class NetworkUnitTests: XCTestCase {
         XCTAssertEqual(error.recoverySuggestion, NetworkError.failure.recoverySuggestion)
     }
     
-    func testGivenErrorThenCreateAppErrorShouldReturnIdentifiableUUIDObject() {
+    func testGivenErrorThenCreateAppErrorShouldReturnIdentifiableObject() {
         let appError = AppError(error: NetworkError.unknown)
         
         XCTAssertNotNil(appError.id)

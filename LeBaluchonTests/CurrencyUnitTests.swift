@@ -67,20 +67,13 @@ class CurrencyUnitTests: XCTestCase {
         wait(for: [expectation], timeout: 3)
     }
     
-    func testGivenWeatherWhenFetchingSymbolWhereCodeEURThenSymbolShouldBe€() throws {
-        let url = Bundle.main.url(forResource: "symbols", withExtension: "json")!
-        let expectation = XCTestExpectation()
-        
-        viewModel.loadData(urlRequest: url) { (dictionnary: CurrencyDictionnary) in
-            let symbol = dictionnary.currencies.first { symbol in
-                symbol.code == "EUR"
-            }
-
-            XCTAssertEqual(symbol!.getSymbol(), NSLocale(localeIdentifier: "EUR").displayName(forKey: .currencySymbol, value: "EUR"))
-            expectation.fulfill()
-        } onFailure: { error in
-            //
-        }
-        wait(for: [expectation], timeout: 3)
+    func testGivenCurrencySymbolEURWhenFetchingSymbolThenSymbolShouldBe€() throws {
+        let symbol = CurrencySymbol(code: "EUR", name: "Euro")
+        XCTAssertEqual(symbol.getSymbol(), NSLocale(localeIdentifier: "EUR").displayName(forKey: .currencySymbol, value: "EUR"))
+    }
+    
+    func testGivenCurrencySymbolZZZWhenFetchingSymbolThenSymbolShouldBeNil() throws {
+        let currencySymbol = CurrencySymbol(code: "ZZZ", name: "ZCoin")
+        XCTAssertNil(currencySymbol.getSymbol())
     }
 }
