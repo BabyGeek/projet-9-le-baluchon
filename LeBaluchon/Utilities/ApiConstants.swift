@@ -14,4 +14,7 @@ struct ApiConstants {
     
     static let currencyAPIURL = "https://v6.exchangerate-api.com/v6/{apiKey}/{resource}"
     static let currencyAPIKEY = "ad8787738ffa75a78f552c6f"
+    
+    static let translationAPIURL = ""
+    static let translationAPIKEY = "AIzaSyBkcs1EDaphfKpPH2Zv5qVlsAzowjOMorg"
 }
