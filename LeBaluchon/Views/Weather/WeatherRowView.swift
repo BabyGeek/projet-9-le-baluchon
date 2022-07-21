@@ -5,6 +5,7 @@
 //  Created by Paul Oggero on 14/07/2022.
 //
 
+#if DEBUG
 import SwiftUI
 
 struct WeatherRowView: View {
@@ -57,3 +58,4 @@ struct MainContent: View {
         }
     }
 }
+#endif

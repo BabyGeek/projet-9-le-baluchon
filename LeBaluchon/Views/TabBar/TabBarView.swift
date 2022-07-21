@@ -4,6 +4,7 @@
 //
 //  Created by Paul Oggero on 16/07/2022.
 //
+#if DEBUG
 
 import SwiftUI
 
@@ -30,3 +31,4 @@ struct TabBarView_Previews: PreviewProvider {
         TabBarView()
     }
 }
+#endif
