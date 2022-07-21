@@ -8,6 +8,7 @@
 #if DEBUG
 import SwiftUI
 
+/// Weather single row view
 struct WeatherRowView: View {
     let weather: Weather
     
@@ -36,6 +37,7 @@ struct WeatherRowView: View {
     }
 }
 
+/// Main content view
 struct MainContent: View {
     let weather: WeatherMain
     

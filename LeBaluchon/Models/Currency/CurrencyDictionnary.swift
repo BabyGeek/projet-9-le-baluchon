@@ -7,11 +7,14 @@
 
 import Foundation
 
+/// Currency dictionnary model
 struct CurrencyDictionnary: Codable, Hashable {
     let result: String
     let supported_codes: [[String]]
     var currencies: [CurrencySymbol] = [CurrencySymbol]()
     
+    /// Extract currencies array of CurrencySymbol from decoder supported codes found, and sort the currencies
+    /// - Parameter decoder: Decoded datas to work with
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         result = try values.decode(String.self, forKey: .result)

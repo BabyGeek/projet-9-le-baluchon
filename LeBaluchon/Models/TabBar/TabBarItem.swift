@@ -10,6 +10,7 @@ import Foundation
 import SwiftUI
 
 
+/// Tab bar items enum
 enum TabBarItem: Hashable {
     case weather, exchange, translate
     

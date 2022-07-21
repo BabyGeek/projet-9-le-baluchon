@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// CurrencyViewModel is an ObservableObject used to fetch datas from exchangerate API
 class CurrencyViewModel: NetworkManager, ObservableObject {
     @Published var error: AppError? = nil
     private let url: String = ApiConstants.currencyAPIURL
@@ -17,7 +18,12 @@ class CurrencyViewModel: NetworkManager, ObservableObject {
     @Published var symbols: [CurrencySymbol] = [CurrencySymbol]()
     private var symbolsLoaded = false
     
-    #if DEBUG
+#if DEBUG
+    /// Perform the base request to set the exchange result
+    /// - Parameters:
+    ///   - from: Value for the currency you want to exchange
+    ///   - to: Value for the desired exchange currency
+    ///   - amount: Amount to exchange, 1 by default
     public func perform(from: String, to: String, amount: Double = 1.0) {
         
         let params: [Any] = [
@@ -41,9 +47,9 @@ class CurrencyViewModel: NetworkManager, ObservableObject {
         
     }
     
+    /// Fetch currencies symbols from the API if it isn't already loaded
     public func performSymbols() {
         if self.symbolsLoaded {
-            // Already loaded
             return
         }
         
@@ -63,6 +69,11 @@ class CurrencyViewModel: NetworkManager, ObservableObject {
     }
     
     
+    /// Build the API query related to additional parameters given
+    /// - Parameters:
+    ///   - resource: Type of resource to reach in the api
+    ///   - params: Optional array of params
+    /// - Returns: Optional URL
     private func getURL(resource: String, params: [Any]? = nil) -> URL? {
         var url = self.url.replacingOccurrences(of: "{apiKey}", with: self.apiKey)
         url = url.replacingOccurrences(of: "{resource}", with: resource)

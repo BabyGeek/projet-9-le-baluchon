@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+/// Tab bar view
 struct AppTabBarView: View {
     let tabs: [TabBarItem]
     @Binding var selection: TabBarItem
@@ -25,6 +26,9 @@ struct AppTabBarView: View {
 }
 
 extension AppTabBarView {
+    /// Tab bar item view
+    /// - Parameter item: item of the tab bar presented
+    /// - Returns: tab bar item View
     private func tabView(item: TabBarItem) -> some View {
         VStack {
             Image(systemName: item.iconName)
@@ -46,6 +50,7 @@ extension AppTabBarView {
         )
     }
     
+    /// Tab bar display, go through each item and display a tabView and add tap gesture
     private var TabBar: some View {
         HStack {
             ForEach(tabs, id: \.self) { tab in
@@ -62,6 +67,8 @@ extension AppTabBarView {
         .padding(.horizontal)
     }
     
+    /// Allow swicthing between each tabs
+    /// - Parameter tab: the tab to switch to
     private func switchToTab(tab: TabBarItem) {
             selection = tab
     }
