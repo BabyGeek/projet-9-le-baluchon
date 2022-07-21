@@ -19,6 +19,7 @@ class CurrencyUnitTests: XCTestCase {
 
     func testGivenNewWhenCheckingShouldBeNilOrEmpty() throws {
         XCTAssertNil(viewModel.result)
+        XCTAssertNil(viewModel.error)
         XCTAssertTrue(viewModel.symbols.isEmpty)
     }
     
