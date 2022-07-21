@@ -8,6 +8,7 @@
 import Foundation
 
 class CurrencyViewModel: NetworkManager, ObservableObject {
+    @Published var error: AppError? = nil
     private let url: String = ApiConstants.currencyAPIURL
     private let apiKey: String = ApiConstants.currencyAPIKEY
     
@@ -16,6 +17,7 @@ class CurrencyViewModel: NetworkManager, ObservableObject {
     @Published var symbols: [CurrencySymbol] = [CurrencySymbol]()
     private var symbolsLoaded = false
     
+    #if DEBUG
     public func perform(from: String, to: String, amount: Double = 1.0) {
         
         let params: [Any] = [
@@ -25,6 +27,7 @@ class CurrencyViewModel: NetworkManager, ObservableObject {
         ]
         
         guard let url = self.getURL(resource: "pair", params: params) else {
+            self.error = AppError(error: .wrongURLError)
             return
         }
         
@@ -32,7 +35,7 @@ class CurrencyViewModel: NetworkManager, ObservableObject {
             urlRequest: url, onSuccess: { result in
                 self.result = result
             }, onFailure: { error in
-                print(error)
+                self.error = AppError(error: error)
             })
         
         
@@ -72,5 +75,6 @@ class CurrencyViewModel: NetworkManager, ObservableObject {
         
         return URL(string: url)
     }
+    #endif
 }
 

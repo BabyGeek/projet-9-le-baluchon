@@ -6,9 +6,12 @@
 //
 
 import Foundation
+import SwiftUI
 
 
 class WeatherViewModel: NetworkManager, ObservableObject {
+    @Published var error: AppError? = nil
+    
     @Published var target: Weather?
     @Published var favorites: [Weather] = [Weather]()
     private let url: String = ApiConstants.weatherAPIURL
@@ -16,6 +19,7 @@ class WeatherViewModel: NetworkManager, ObservableObject {
     var lang = "en"
     var units = "metric"
     
+    #if DEBUG
     public func perform(lat latitude: Double, lon longitude: Double, setTarget: Bool = false) {
         let params = [
             URLQueryItem(name: "lat", value: latitude.formatted()),
@@ -23,6 +27,7 @@ class WeatherViewModel: NetworkManager, ObservableObject {
         ]
         
         guard let url = self.getQueryURL(params: params) else {
+            self.error = AppError(error: .wrongURLError)
             return
         }
         
@@ -33,7 +38,7 @@ class WeatherViewModel: NetworkManager, ObservableObject {
                 self.favorites.append(weather)
             }
         }, onFailure: { error in
-            print(error.localizedDescription)
+            self.error = AppError(error: error)
         })
     }
     
@@ -58,5 +63,6 @@ class WeatherViewModel: NetworkManager, ObservableObject {
         
         return nil
     }
+    #endif
 }
 
