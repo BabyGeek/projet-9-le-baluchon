@@ -32,9 +32,10 @@ extension AppTabBarView {
     private func tabView(item: TabBarItem) -> some View {
         VStack {
             Image(systemName: item.iconName)
-                .font(.subheadline)
+                .frame(height: 12, alignment: .center)
+            
             Text(item.title)
-                .font(.system(size: 10, weight: .semibold, design: .rounded))
+                .font(.caption)
         }
         .foregroundColor(localSelection == item ? item.color : .gray)
         .padding(.vertical, 8)
