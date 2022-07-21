@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+/// Weather model
 struct Weather: Codable, Hashable {
     let name: String
     let sys: WheatherSys
@@ -15,6 +16,7 @@ struct Weather: Codable, Hashable {
     let weather: [WeatherType]
 }
 
+/// Weather type model, contains the weather icon
 struct WeatherType: Codable, Hashable {
     let id: Int
     let main: String
@@ -43,12 +45,14 @@ struct WeatherType: Codable, Hashable {
     }
 }
 
+/// Weather system model
 struct WheatherSys: Codable, Hashable {
     let country: String
     let sunrise: Double
     let sunset: Double
 }
 
+/// Weather main model
 struct WeatherMain: Codable, Hashable  {
     let temp: Double
     let tempMin: Double

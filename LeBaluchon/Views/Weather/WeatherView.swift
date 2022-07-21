@@ -8,6 +8,7 @@
 #if DEBUG
 import SwiftUI
 
+/// Weather view page
 struct WeatherView: View {
     @StateObject var viewModel = WeatherViewModel()
     

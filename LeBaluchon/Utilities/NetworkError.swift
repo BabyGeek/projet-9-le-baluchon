@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Network error enum
 public enum NetworkError: Error {
     case failure
     case wrongURLError
@@ -18,6 +19,7 @@ public enum NetworkError: Error {
 
 extension NetworkError: LocalizedError {
     
+    /// Errors descriptions
     public var errorDescription: String? {
         switch self {
         case .wrongURLError:
@@ -28,7 +30,8 @@ extension NetworkError: LocalizedError {
             return "Unexpected error"
         }
     }
-     
+    
+    /// Error failure reasons
     public var failureReason: String? {
         switch self {
         case .failure:
@@ -41,7 +44,8 @@ extension NetworkError: LocalizedError {
             return "An unexpected error as been detected."
         }
     }
-     
+    
+    /// Error recovery suggestion
     public var recoverySuggestion: String? {
         switch self {
         default:

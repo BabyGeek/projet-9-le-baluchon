@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+/// Tab Bar base view
 struct TabBarView: View {
     @State private var selection: String = "weather"
     @State private var selectedTab: TabBarItem = .weather

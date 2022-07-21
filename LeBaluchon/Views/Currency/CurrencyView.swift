@@ -9,6 +9,7 @@
 
 import SwiftUI
 
+/// View for the currency page
 struct CurrencyView: View {
     @StateObject private var viewModel = CurrencyViewModel()
     @State var from: String = "EUR"
@@ -45,6 +46,7 @@ struct CurrencyView_Previews: PreviewProvider {
 }
 
 extension CurrencyView {
+    /// Form view for the currency page
     private var form: some View {
         Form {
             
@@ -92,11 +94,13 @@ extension CurrencyView {
 
 
 extension CurrencyView {
+    /// Call viewModel to update the result displayed
     private func updateResult() {
         viewModel.perform(from: from, to: to, amount: amount)
     }
 }
 
+/// Symbol view for select list
 struct symbolListView: View {
     let symbol: CurrencySymbol
     

@@ -8,6 +8,7 @@
 import SwiftUI
 
 @main
+/// Main app launch
 struct LeBaluchonApp: App {
     var body: some Scene {
         WindowGroup {

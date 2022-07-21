@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Currency exchange rate model
 struct ExchangeRateResult: Codable, Hashable {
     let success: String
     let from: String

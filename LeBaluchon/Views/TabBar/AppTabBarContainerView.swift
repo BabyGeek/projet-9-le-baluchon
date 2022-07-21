@@ -8,6 +8,7 @@
 #if DEBUG
 import SwiftUI
 
+/// Tab bar container, contains the views, the tab bar items, and make all in the same ZStack
 struct AppTabBarContainerView<Content:View>: View {
     
     @Binding var selection: TabBarItem

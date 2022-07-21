@@ -8,7 +8,13 @@
 import Foundation
 
 
+/// Manage networking requests
 class NetworkManager {
+    /// Load data and decode them if no errors
+    /// - Parameters:
+    ///   - url: url to follow for the request
+    ///   - success: callback on success
+    ///   - failure: callback on failure
     func loadData<T:Decodable>(urlRequest url: URL, onSuccess success: @escaping (T) -> (), onFailure failure: @escaping (NetworkError) -> ()) {
         let task = URLSession.shared.dataTask(with: url)
         {
