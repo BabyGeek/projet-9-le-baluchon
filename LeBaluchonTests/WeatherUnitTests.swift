@@ -20,6 +20,7 @@ class WeatherUnitTests: XCTestCase {
 
     func testGivenNewWhenCheckingShouldBeNilOrEmpty() throws {
         XCTAssertNil(viewModel.target)
+        XCTAssertNil(viewModel.error)
         XCTAssertTrue(viewModel.favorites.isEmpty)
     }
     

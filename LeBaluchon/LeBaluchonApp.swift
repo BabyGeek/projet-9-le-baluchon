@@ -11,7 +11,9 @@ import SwiftUI
 struct LeBaluchonApp: App {
     var body: some Scene {
         WindowGroup {
+            #if DEBUG
             TabBarView()
+            #endif
         }
     }
 }

@@ -5,14 +5,10 @@
 //  Created by Paul Oggero on 17/07/2022.
 //
 
+#if DEBUG
 import Foundation
 import SwiftUI
 
-//struct TabBarItem: Hashable {
-//    let iconName: String
-//    let title: String
-//    let color: Color
-//}
 
 enum TabBarItem: Hashable {
     case weather, exchange, translate
@@ -41,3 +37,4 @@ enum TabBarItem: Hashable {
         }
     }
 }
+#endif

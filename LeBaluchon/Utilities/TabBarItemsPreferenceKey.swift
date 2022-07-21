@@ -5,6 +5,7 @@
 //  Created by Paul Oggero on 17/07/2022.
 //
 
+#if DEBUG
 import Foundation
 import SwiftUI
 
@@ -34,3 +35,4 @@ extension View {
         modifier(TabBarItemViewModifier(tab: tab, selection: selection))
     }
 }
+#endif
