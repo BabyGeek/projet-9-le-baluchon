@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-
+#if DEBUG
 struct TextFieldClearButton: ViewModifier {
     @Binding var text: String
     
@@ -27,3 +27,4 @@ struct TextFieldClearButton: ViewModifier {
         }
     }
 }
+#endif
