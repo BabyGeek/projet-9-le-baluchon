@@ -18,9 +18,6 @@ class TranslationViewModel: NetworkManager, ObservableObject {
     
     private let url: String = ApiConstants.translationAPIURL
     private let apiKey: String = ApiConstants.translationAPIKEY
-    private var languagesLoaded: Bool {
-        return !self.langs.isEmpty
-    }
     
     override init() {
         super.init()
@@ -54,10 +51,6 @@ class TranslationViewModel: NetworkManager, ObservableObject {
     
     /// Load langs from API
     private func getLangs() {
-        if self.languagesLoaded {
-            return
-        }
-        
         if let url = self.getURL(resource: "languages", params: [URLQueryItem(name: "target", value: self.source)]) {
             self.loadData(urlRequest: url) { (languageDictionnary: TranslationLanguageData) in
                 self.langs = languageDictionnary.data.languages.sorted(by: { $0.name < $1.name })
@@ -73,7 +66,7 @@ class TranslationViewModel: NetworkManager, ObservableObject {
     ///   - resource: Type of resource to reach in the api
     ///   - params: Optional array of params
     /// - Returns: Optional URL
-    private func getURL(resource: String? = nil, params: [URLQueryItem]? = nil) -> URL? {
+    private func getURL(resource: String? = nil, params: [URLQueryItem] = [URLQueryItem]()) -> URL? {
         var url = self.url
         
         if let resource = resource {
@@ -87,16 +80,8 @@ class TranslationViewModel: NetworkManager, ObservableObject {
             URLQueryItem(name: "key", value: self.apiKey),
         ]
         
-        if let params = params {
-            urlComponent?.queryItems = params + baseParams
-        } else {
-            urlComponent?.queryItems = baseParams
-        }
-        
-        if let urlComponent = urlComponent {
-            return urlComponent.url
-        }
-        
-        return nil
+        urlComponent?.queryItems = params + baseParams
+
+        return urlComponent?.url
     }
 }
