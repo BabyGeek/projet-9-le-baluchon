@@ -13,6 +13,14 @@ struct TranslationLanguageData: Codable, Hashable {
 
 struct TranslationLanguageDictionnary: Codable, Hashable {
     let languages: [TranslationLanguage]
+    
+    func getNameForLanguage(_ language: String) -> String {
+        if let language = languages.first(where: { $0.language == language }) {
+            return language.name.isEmpty ? language.language : language.name
+        }
+        
+        return ""
+    }
 }
 
 struct TranslationLanguage: Codable, Identifiable, Hashable {

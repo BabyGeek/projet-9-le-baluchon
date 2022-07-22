@@ -12,12 +12,13 @@ class TranslationViewModel: NetworkManager, ObservableObject {
     @Published var results: TranslationDictionnary? = nil
     @Published var autoloadSource: Bool = true
     @Published var langs: [TranslationLanguage] = [TranslationLanguage]()
-    @Published var source: String = "fr"
-    @Published var target: String = "en"
+    @Published var source: String = "en"
+    @Published var target: String = "vi"
     
     
     private let url: String = ApiConstants.translationAPIURL
     private let apiKey: String = ApiConstants.translationAPIKEY
+    private var langDictionnary: TranslationLanguageDictionnary? = nil
     
     override init() {
         super.init()
@@ -48,10 +49,34 @@ class TranslationViewModel: NetworkManager, ObservableObject {
     }
 #endif
     
+    /// Switch target with source language
+    public func switchLanguage() {
+        let tempSource = self.source
+        self.source = self.target
+        self.target = tempSource
+    }
+    
+    public func getSourceLabel() -> String {
+        guard let dictionnary = self.langDictionnary else {
+            return ""
+        }
+        
+        return dictionnary.getNameForLanguage(self.source)
+    }
+    
+    public func getTargetLabel() -> String {
+        guard let dictionnary = self.langDictionnary else {
+            return ""
+        }
+        
+        return dictionnary.getNameForLanguage(self.target)
+    }
+    
     /// Load langs from API
     private func getLangs() {
         if let url = self.getURL(resource: "languages", params: [URLQueryItem(name: "target", value: self.source)]) {
             self.loadData(urlRequest: url) { (languageDictionnary: TranslationLanguageData) in
+                self.langDictionnary = languageDictionnary.data
                 self.langs = languageDictionnary.data.languages.sorted(by: { $0.name < $1.name })
             } onFailure: { error in
                 self.error = AppError(error: error)

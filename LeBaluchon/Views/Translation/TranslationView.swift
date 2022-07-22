@@ -21,12 +21,25 @@ struct TranslationView: View {
             form
                 .navigationTitle("Translation")
                 .toolbar {
-                    ToolbarItem {
-                        Button(action: {
-                            self.viewModel.autoloadSource.toggle()
-                        }, label: {
+                    ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    
+                        Button {
+                            self.viewModel.switchLanguage()
+
+                            self.viewModel.autoloadSource = false
+                        } label: {
+                            Image(systemName: "arrow.left.arrow.right.square")
+                        }
+
+                        Spacer()
+                        
+                        Button {
+                            withAnimation {
+                                self.viewModel.autoloadSource.toggle()
+                            }
+                        } label: {
                             Image(systemName: self.viewModel.autoloadSource ? "star.bubble.fill" : "star.bubble")
-                        })
+                        }
                     }
                 }
             
@@ -86,8 +99,16 @@ extension TranslationView {
                         .focused($textIsFocused)
                         .modifier(TextFieldClearButton(text: $text))
                 }
+            }
+            
+            Section("Actions") {
+                
                 Button("Translate") {
                     self.selectTarget = true
+                }
+                
+                Button("Direct translate in \(viewModel.getTargetLabel())") {
+                    self.viewModel.performForText(text)
                 }
             }
             
