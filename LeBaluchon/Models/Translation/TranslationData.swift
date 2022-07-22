@@ -7,17 +7,6 @@
 
 import Foundation
 
-
-//{
-//  "data": {
-//    "translations": [
-//      {
-//        "translatedText": "Traduis-moi"
-//      }
-//    ]
-//  }
-//}
-
 struct TranslationData: Codable, Hashable {
     let data: TranslationDictionnary
 }
