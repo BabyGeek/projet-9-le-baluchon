@@ -21,7 +21,7 @@ struct TabBarView: View {
             CurrencyView()
                 .tabBarItem(tab: .exchange, selection: $selectedTab)
             
-            Color.green
+            TranslationView()
                 .tabBarItem(tab: .translate, selection: $selectedTab)
         }
     }
