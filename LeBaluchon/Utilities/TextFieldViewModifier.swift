@@ -6,3 +6,24 @@
 //
 
 import Foundation
+import SwiftUI
+
+
+struct TextFieldClearButton: ViewModifier {
+    @Binding var text: String
+    
+    func body(content: Content) -> some View {
+        HStack {
+            content
+            
+            if !text.isEmpty {
+                Image(systemName: "xmark.circle")
+                    .foregroundColor(.gray)
+                    .padding(.trailing, 8)
+                    .onTapGesture {
+                        self.text = ""
+                    }
+            }
+        }
+    }
+}
