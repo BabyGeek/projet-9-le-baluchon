@@ -30,6 +30,9 @@
 		2B992D4228889C3300DBAC4F /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B992D4028889C3300DBAC4F /* NetworkError.swift */; };
 		2B9F8B4F288749A700A61AC8 /* WeatherUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9F8B4E288749A700A61AC8 /* WeatherUnitTests.swift */; };
 		2BC3FB35288B4223009A8A1F /* TextFieldViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC3FB34288B4223009A8A1F /* TextFieldViewModifier.swift */; };
+		2BC3FB37288B569B009A8A1F /* translate.json in Resources */ = {isa = PBXBuildFile; fileRef = 2BC3FB36288B569B009A8A1F /* translate.json */; };
+		2BC3FB39288B5874009A8A1F /* langs.json in Resources */ = {isa = PBXBuildFile; fileRef = 2BC3FB38288B56CC009A8A1F /* langs.json */; };
+		2BC3FB3A288B5889009A8A1F /* langs.json in Resources */ = {isa = PBXBuildFile; fileRef = 2BC3FB38288B56CC009A8A1F /* langs.json */; };
 		2BC5B4E8287DF061003BC4E2 /* LeBaluchonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC5B4E7287DF061003BC4E2 /* LeBaluchonApp.swift */; };
 		2BC5B4EA287DF061003BC4E2 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC5B4E9287DF061003BC4E2 /* WeatherView.swift */; };
 		2BC5B4EC287DF064003BC4E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BC5B4EB287DF064003BC4E2 /* Assets.xcassets */; };
@@ -40,6 +43,12 @@
 		2BC5B51F287E0190003BC4E2 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC5B51D287E0190003BC4E2 /* Weather.swift */; };
 		2BC5B521287E05F9003BC4E2 /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC5B520287E05F9003BC4E2 /* WeatherViewModel.swift */; };
 		2BC5B522287E05F9003BC4E2 /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC5B520287E05F9003BC4E2 /* WeatherViewModel.swift */; };
+		2BD55826288B5C070030A480 /* translate.json in Resources */ = {isa = PBXBuildFile; fileRef = 2BC3FB36288B569B009A8A1F /* translate.json */; };
+		2BD55827288B5C230030A480 /* exchange.json in Resources */ = {isa = PBXBuildFile; fileRef = 2BFAA3F2288760E0002B8941 /* exchange.json */; };
+		2BD55828288B5C260030A480 /* rate.json in Resources */ = {isa = PBXBuildFile; fileRef = 2BFAA3F1288760CC002B8941 /* rate.json */; };
+		2BD55829288B5C290030A480 /* other-weather.json in Resources */ = {isa = PBXBuildFile; fileRef = 2BFAA3EA288757E3002B8941 /* other-weather.json */; };
+		2BD5582A288B5C2B0030A480 /* symbols.json in Resources */ = {isa = PBXBuildFile; fileRef = 2BFAA3F0288760AF002B8941 /* symbols.json */; };
+		2BD5582B288B5C2E0030A480 /* weather.json in Resources */ = {isa = PBXBuildFile; fileRef = 2BFAA3E72887535C002B8941 /* weather.json */; };
 		2BFAA3DF28874EC2002B8941 /* ApiConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2F0957288446400013E438 /* ApiConstants.swift */; };
 		2BFAA3E028874ED3002B8941 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B97A24E288729290060B74F /* NetworkManager.swift */; };
 		2BFAA3E128874ED6002B8941 /* TabBarItemsPreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2F09542884309F0013E438 /* TabBarItemsPreferenceKey.swift */; };
@@ -49,16 +58,11 @@
 		2BFAA3E528874EE5002B8941 /* CurrencySymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2F09632884B5590013E438 /* CurrencySymbol.swift */; };
 		2BFAA3E628874EF3002B8941 /* CurrencyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2F0959288448A60013E438 /* CurrencyViewModel.swift */; };
 		2BFAA3E82887535C002B8941 /* weather.json in Resources */ = {isa = PBXBuildFile; fileRef = 2BFAA3E72887535C002B8941 /* weather.json */; };
-		2BFAA3E92887552E002B8941 /* weather.json in Resources */ = {isa = PBXBuildFile; fileRef = 2BFAA3E72887535C002B8941 /* weather.json */; };
-		2BFAA3EC2887583F002B8941 /* other-weather.json in Resources */ = {isa = PBXBuildFile; fileRef = 2BFAA3EA288757E3002B8941 /* other-weather.json */; };
 		2BFAA3ED28875840002B8941 /* other-weather.json in Resources */ = {isa = PBXBuildFile; fileRef = 2BFAA3EA288757E3002B8941 /* other-weather.json */; };
 		2BFAA3EF28876037002B8941 /* CurrencyUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFAA3EE28876037002B8941 /* CurrencyUnitTests.swift */; };
 		2BFAA3F3288764FB002B8941 /* exchange.json in Resources */ = {isa = PBXBuildFile; fileRef = 2BFAA3F2288760E0002B8941 /* exchange.json */; };
-		2BFAA3F4288764FC002B8941 /* exchange.json in Resources */ = {isa = PBXBuildFile; fileRef = 2BFAA3F2288760E0002B8941 /* exchange.json */; };
 		2BFAA3F5288764FF002B8941 /* rate.json in Resources */ = {isa = PBXBuildFile; fileRef = 2BFAA3F1288760CC002B8941 /* rate.json */; };
-		2BFAA3F6288764FF002B8941 /* rate.json in Resources */ = {isa = PBXBuildFile; fileRef = 2BFAA3F1288760CC002B8941 /* rate.json */; };
 		2BFAA3F728876503002B8941 /* symbols.json in Resources */ = {isa = PBXBuildFile; fileRef = 2BFAA3F0288760AF002B8941 /* symbols.json */; };
-		2BFAA3F828876503002B8941 /* symbols.json in Resources */ = {isa = PBXBuildFile; fileRef = 2BFAA3F0288760AF002B8941 /* symbols.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +105,8 @@
 		2B992D4028889C3300DBAC4F /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		2B9F8B4E288749A700A61AC8 /* WeatherUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherUnitTests.swift; sourceTree = "<group>"; };
 		2BC3FB34288B4223009A8A1F /* TextFieldViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldViewModifier.swift; sourceTree = "<group>"; };
+		2BC3FB36288B569B009A8A1F /* translate.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = translate.json; sourceTree = "<group>"; };
+		2BC3FB38288B56CC009A8A1F /* langs.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = langs.json; sourceTree = "<group>"; };
 		2BC5B4E4287DF061003BC4E2 /* LeBaluchon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeBaluchon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BC5B4E7287DF061003BC4E2 /* LeBaluchonApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeBaluchonApp.swift; sourceTree = "<group>"; };
 		2BC5B4E9287DF061003BC4E2 /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
@@ -183,6 +189,8 @@
 				2BFAA3F0288760AF002B8941 /* symbols.json */,
 				2BFAA3F1288760CC002B8941 /* rate.json */,
 				2BFAA3F2288760E0002B8941 /* exchange.json */,
+				2BC3FB36288B569B009A8A1F /* translate.json */,
+				2BC3FB38288B56CC009A8A1F /* langs.json */,
 			);
 			path = MockDatas;
 			sourceTree = "<group>";
@@ -462,13 +470,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BD55826288B5C070030A480 /* translate.json in Resources */,
+				2BD55828288B5C260030A480 /* rate.json in Resources */,
 				2BC5B4EF287DF064003BC4E2 /* Preview Assets.xcassets in Resources */,
-				2BFAA3F6288764FF002B8941 /* rate.json in Resources */,
-				2BFAA3F828876503002B8941 /* symbols.json in Resources */,
-				2BFAA3EC2887583F002B8941 /* other-weather.json in Resources */,
-				2BFAA3F4288764FC002B8941 /* exchange.json in Resources */,
+				2BD55827288B5C230030A480 /* exchange.json in Resources */,
 				2BC5B4EC287DF064003BC4E2 /* Assets.xcassets in Resources */,
-				2BFAA3E92887552E002B8941 /* weather.json in Resources */,
+				2BD5582A288B5C2B0030A480 /* symbols.json in Resources */,
+				2BD55829288B5C290030A480 /* other-weather.json in Resources */,
+				2BC3FB3A288B5889009A8A1F /* langs.json in Resources */,
+				2BD5582B288B5C2E0030A480 /* weather.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,8 +486,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BC3FB37288B569B009A8A1F /* translate.json in Resources */,
 				2BFAA3E82887535C002B8941 /* weather.json in Resources */,
 				2BFAA3F5288764FF002B8941 /* rate.json in Resources */,
+				2BC3FB39288B5874009A8A1F /* langs.json in Resources */,
 				2BFAA3ED28875840002B8941 /* other-weather.json in Resources */,
 				2BFAA3F728876503002B8941 /* symbols.json in Resources */,
 				2BFAA3F3288764FB002B8941 /* exchange.json in Resources */,
