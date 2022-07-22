@@ -93,7 +93,7 @@ extension TranslationView {
             
             Section("Translation") {
                 if let results = viewModel.results {
-                    Text(results.first!.translatedText)
+                    Text(results.getText())
                 }else if viewModel.isLoading {
                     Text("Loading...")
                 }else {
