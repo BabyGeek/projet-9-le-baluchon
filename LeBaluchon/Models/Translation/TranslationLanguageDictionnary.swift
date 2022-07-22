@@ -26,9 +26,9 @@ struct TranslationLanguage: Codable, Identifiable, Hashable {
     }
       
     init(from decoder: Decoder) throws {
-      let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decodeIfPresent(UUID.self, forKey: .id) ?? UUID()
-        language = try container.decode(String.self, forKey: .language)
-        name = try container.decode(String.self, forKey: .name)
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        id = try values.decodeIfPresent(UUID.self, forKey: .id) ?? UUID()
+        language = try values.decode(String.self, forKey: .language)
+        name = try values.decode(String.self, forKey: .name)
     }
 }
