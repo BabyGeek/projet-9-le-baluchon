@@ -10,11 +10,11 @@ import SwiftUI
 
 struct TranslationView: View {
     @StateObject private var viewModel = TranslationViewModel()
-    @State var source: String = "en"
-    @State var target: String = "fr"
-    @State var text: String = "Hello my name is Paul, I am happy to see you here"
+    @State var text: String = ""
+    @State var placeholderText: String = "Quelle direction je dois suivre pour aller à Central Parc ?"
     
     @State var selectTarget = false
+    @FocusState private var textIsFocused: Bool
     
     var body: some View {
         NavigationView {
@@ -29,12 +29,10 @@ struct TranslationView: View {
                         })
                     }
                 }
+            
         }
         .sheet(isPresented: $selectTarget) {
-            SelectTargetSheet(target: target, viewModel: self.viewModel, text: text)
-        }
-        .onAppear {
-            //
+            SelectTargetSheet(viewModel: self.viewModel, text: text)
         }
         .alert(item: $viewModel.error) { error in
             guard let descrition = error.error.errorDescription, let message = error.error.failureReason else {
@@ -61,8 +59,7 @@ extension TranslationView {
         Form {
             if !self.viewModel.autoloadSource {
                 Section("Source") {
-                    
-                    Picker("Source language", selection: $source) {
+                    Picker("Source language", selection: $viewModel.source) {
                         
                         ForEach($viewModel.langs.indices, id: \.self) { index in
                             let lang = viewModel.langs[index]
@@ -74,12 +71,21 @@ extension TranslationView {
             
             
             Section("Translate") {
-                TextEditor(text: $text)
-                    .frame(minHeight: 60, alignment: .leading)
-                    .foregroundColor(.black)
-                    .multilineTextAlignment(.leading)
+                ZStack {
+                    if self.text.isEmpty {
+                        TextEditor(text:$placeholderText)
+                            .font(.body)
+                            .foregroundColor(.gray)
+                            .disabled(true)
+                    }
                     
-                
+                    TextEditor(text: $text)
+                        .frame(minHeight: 100, alignment: .leading)
+                        .foregroundColor(.black)
+                        .multilineTextAlignment(.leading)
+                        .focused($textIsFocused)
+                        .modifier(TextFieldClearButton(text: $text))
+                }
                 Button("Translate") {
                     self.selectTarget = true
                 }
@@ -100,7 +106,6 @@ extension TranslationView {
 
 struct SelectTargetSheet: View {
     @Environment(\.dismiss) var dismiss
-    @State var target: String
     @StateObject var viewModel: TranslationViewModel
     var text: String
     
@@ -108,7 +113,7 @@ struct SelectTargetSheet: View {
         
         NavigationView {
             Form {
-                Picker("Select a target language", selection: $target) {
+                Picker("Select a target language", selection: $viewModel.target) {
                     ForEach($viewModel.langs.indices, id: \.self) { index in
                         let lang = viewModel.langs[index]
                         langListView(lang: lang)
@@ -118,7 +123,6 @@ struct SelectTargetSheet: View {
                 .pickerStyle(.wheel)
                 
                 Button("Translate") {
-                    self.viewModel.target = target
                     self.viewModel.performForText(text)
                     self.dismiss()
                 }
@@ -131,11 +135,11 @@ struct SelectTargetSheet: View {
                         self.dismiss()
                     }, label: {
                         Image(systemName: "xmark")
+                            .foregroundColor(.gray)
                     })
                 }
             }
         }
-        
     }
     
     func targetSelected(lang: TranslationLanguage) {

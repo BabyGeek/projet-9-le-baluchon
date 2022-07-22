@@ -12,8 +12,8 @@ class TranslationViewModel: NetworkManager, ObservableObject {
     @Published var results: [Translation]? = nil
     @Published var autoloadSource: Bool = true
     @Published var langs: [TranslationLanguage] = [TranslationLanguage]()
-    @Published var source: String = "en"
-    @Published var target: String = "fr"
+    @Published var source: String = "fr"
+    @Published var target: String = "en"
     
     
     private let url: String = ApiConstants.translationAPIURL
@@ -28,16 +28,22 @@ class TranslationViewModel: NetworkManager, ObservableObject {
     }
     
 #if DEBUG
+    /// Perform translate request
+    /// - Parameter text: Text to translate
     public func performForText(_ text: String) {
-        let params = [
+        var params = [
             URLQueryItem(name: "target", value: self.target),
-            URLQueryItem(name: "source", value: self.source),
             URLQueryItem(name: "q", value: text)
         ]
+        
+        if(!self.autoloadSource) {
+            params.append(URLQueryItem(name: "source", value: self.source))
+        }
         
         if let url = self.getURL(resource: nil, params: params) {
             self.loadData(urlRequest: url) { (translationData: TranslationData) in
                 self.results = translationData.data.translations
+                dump(self.results?.first)
             } onFailure: { error in
                 self.error = AppError(error: error)
             }
@@ -46,6 +52,7 @@ class TranslationViewModel: NetworkManager, ObservableObject {
     }
 #endif
     
+    /// Load langs from API
     private func getLangs() {
         if self.languagesLoaded {
             return
@@ -79,6 +86,7 @@ class TranslationViewModel: NetworkManager, ObservableObject {
         let baseParams = [
             URLQueryItem(name: "key", value: self.apiKey),
         ]
+        
         if let params = params {
             urlComponent?.queryItems = params + baseParams
         } else {
