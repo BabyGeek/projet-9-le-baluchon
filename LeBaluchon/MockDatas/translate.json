@@ -1,6 +1,9 @@
 {
-    "type": "MultiPolygon",
-    "coordinates": [
-        
+  "data": {
+    "translations": [
+      {
+        "translatedText": "Bonjour"
+      }
     ]
+  }
 }
