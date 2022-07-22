@@ -60,7 +60,7 @@ class TranslationViewModel: NetworkManager, ObservableObject {
         
         if let url = self.getURL(resource: "languages", params: [URLQueryItem(name: "target", value: self.source)]) {
             self.loadData(urlRequest: url) { (languageDictionnary: TranslationLanguageData) in
-                self.langs = languageDictionnary.data.languages.sorted(by: { $0.language < $1.language })
+                self.langs = languageDictionnary.data.languages.sorted(by: { $0.name < $1.name })
             } onFailure: { error in
                 self.error = AppError(error: error)
             }
