@@ -10,6 +10,7 @@ import Foundation
 
 /// Manage networking requests
 class NetworkManager {
+    @Published var isLoading: Bool = false
     /// Load data and decode them if no errors
     /// - Parameters:
     ///   - url: url to follow for the request
@@ -28,9 +29,12 @@ class NetworkManager {
             do {
                 let object = try JSONDecoder().decode(T.self, from: data)
                 
+                self.isLoading = true
                 DispatchQueue.main.async {
                     success(object)
                 }
+                self.isLoading = false
+                
             } catch {
                 failure(.failure)
             }
