@@ -9,7 +9,7 @@ import Foundation
 
 class TranslationViewModel: NetworkManager, ObservableObject {
     @Published var error: AppError? = nil
-    @Published var results: [Translation]? = nil
+    @Published var results: [TranslationData]? = nil
     @Published var autoloadSource: Bool = true
     @Published var langs: [TranslationLanguage] = [TranslationLanguage]()
     @Published var source: String = "fr"
@@ -39,7 +39,7 @@ class TranslationViewModel: NetworkManager, ObservableObject {
         
         if let url = self.getURL(resource: nil, params: params) {
             self.loadData(urlRequest: url) { (translationData: TranslationData) in
-                self.results = translationData.data.translations
+                self.results = translationData.data
                 dump(self.results?.first)
             } onFailure: { error in
                 self.error = AppError(error: error)
