@@ -5,31 +5,56 @@
 //  Created by Paul Oggero on 22/07/2022.
 //
 
+@testable import LeBaluchon
 import XCTest
 
 class TranslationUnitTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    var viewModel: TranslationViewModel!
+
+    @MainActor override func setUp() {
+        super.setUp()
+        viewModel = TranslationViewModel()
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    func testGivenNewWhenCheckingShouldBeNilOrEmptyExceptSourceTargetAndLangs() throws {
+        XCTAssertNil(viewModel.results)
+        XCTAssertNil(viewModel.error)
+        
+        XCTAssertFalse(viewModel.isLoading)
+
+        XCTAssertNotNil(viewModel.langs)
+        XCTAssertTrue(viewModel.autoloadSource)
+
+        XCTAssertEqual(viewModel.source, "fr")
+        XCTAssertEqual(viewModel.target, "en")
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
+    func testGivenNoneWhenFetchingLanguagesThenFirstLanguageShouldBebh() throws {
+        let url = Bundle.main.url(forResource: "langs", withExtension: "json")!
+        let expectation = XCTestExpectation()
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+        viewModel.loadData(urlRequest: url) { (languageDictionnary: TranslationLanguageData) in
+            let first = languageDictionnary.data.languages.first!
+            XCTAssertEqual(first.language, "bh")
+            expectation.fulfill()
+        } onFailure: { error in
+            //
         }
+        wait(for: [expectation], timeout: 3)
     }
+    
+    func testGivenNoneWhenFetchingTranslateThenResponseTextShouldBeBonjour() throws {
+        let url = Bundle.main.url(forResource: "translate", withExtension: "json")!
+        let expectation = XCTestExpectation()
 
+        viewModel.loadData(urlRequest: url) { (translationData: TranslationData) in
+            let text = translationData.data.getText()
+            XCTAssertEqual(text, "Bonjour")
+            expectation.fulfill()
+        } onFailure: { error in
+            //
+        }
+        wait(for: [expectation], timeout: 3)
+    }
 }
