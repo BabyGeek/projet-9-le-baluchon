@@ -17,30 +17,28 @@ class NetworkManager {
     ///   - success: callback on success
     ///   - failure: callback on failure
     func loadData<T:Decodable>(urlRequest url: URL, onSuccess success: @escaping (T) -> (), onFailure failure: @escaping (NetworkError) -> ()) {
+        self.isLoading = true
         let task = URLSession.shared.dataTask(with: url)
         {
             data, response, error in
             
-            guard let data = data, error == nil else {
-                failure(.loadDataError)
-                return
-            }
-            
-            do {
-                let object = try JSONDecoder().decode(T.self, from: data)
-                
-                self.isLoading = true
-                DispatchQueue.main.async {
-                    success(object)
+            DispatchQueue.main.async {
+                guard let data = data, error == nil else {
+                    failure(.loadDataError)
+                    return
                 }
-                self.isLoading = false
                 
-            } catch {
-                failure(.failure)
+                do {
+                    let object = try JSONDecoder().decode(T.self, from: data)
+                    
+                    success(object)
+                    
+                } catch {
+                    failure(.failure)
+                }
             }
-            
         }
-        
+        self.isLoading = false
         task.resume()
     }
 }
