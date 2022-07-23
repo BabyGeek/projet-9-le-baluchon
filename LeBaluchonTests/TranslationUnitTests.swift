@@ -60,21 +60,6 @@ class TranslationUnitTests: XCTestCase {
         wait(for: [expectation], timeout: 3)
     }
     
-    func testGivenLangDictionnaryToViewModelThenLangsShouldNotBeEmpty() throws {
-        let url = Bundle.main.url(forResource: "langs", withExtension: "json")!
-        let expectation = XCTestExpectation()
-
-        viewModel.loadData(urlRequest: url) { (languageDictionnary: TranslationLanguageData) in
-            viewModel.langDictionnary = languageDictionnary.data
-            expectation.fulfill()
-        } onFailure: { error in
-            expectation.fulfill()
-        }
-        wait(for: [expectation], timeout: 3)
-        
-        XCTAssertFalse(viewModel.langs.isEmpty)
-    }
-    
     func testGivenNoneWhenFetchingTranslateThenResponseTextShouldBeBonjour() throws {
         let url = Bundle.main.url(forResource: "translate", withExtension: "json")!
         let expectation = XCTestExpectation()
