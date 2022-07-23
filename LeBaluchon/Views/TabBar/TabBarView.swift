@@ -17,12 +17,15 @@ struct TabBarView: View {
         AppTabBarContainerView(selection: $selectedTab) {
             WeatherView()
                 .tabBarItem(tab: .weather, selection: $selectedTab)
+                .phoneOnlyNavigationView()
             
             CurrencyView()
                 .tabBarItem(tab: .exchange, selection: $selectedTab)
+                .phoneOnlyNavigationView()
             
             TranslationView()
                 .tabBarItem(tab: .translate, selection: $selectedTab)
+                .phoneOnlyNavigationView()
         }
     }
 }

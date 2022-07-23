@@ -13,6 +13,7 @@ struct AppTabBarContainerView<Content:View>: View {
     
     @Binding var selection: TabBarItem
     @State private var tabs: [TabBarItem] = [TabBarItem]()
+    @State private var keyboardEnabled: Bool = false
     
     let content: Content
     
@@ -25,11 +26,22 @@ struct AppTabBarContainerView<Content:View>: View {
         ZStack(alignment: .bottom) {
             content
                 .ignoresSafeArea()
+                .endTextEditing(including: keyboardEnabled ? .all : .subviews)
             
-            AppTabBarView(tabs: tabs, selection: $selection, localSelection: selection)
+            if !self.keyboardEnabled {
+                AppTabBarView(tabs: tabs, selection: $selection, localSelection: selection)
+            }
         }
         .onPreferenceChange(TabBarItemsPreferenceKey.self) { value in
             self.tabs = value
+        }
+        .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification)) { _ in
+            self.keyboardEnabled = true
+        }
+        .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification)) { _ in
+            withAnimation(.easeInOut(duration: 0.7)) {
+                self.keyboardEnabled = false
+            }
         }
     }
 }
@@ -47,4 +59,19 @@ struct TabBarContainerView_Previews: PreviewProvider {
         }
     }
 }
+extension View {
+    /// Applies the given transform if the given condition evaluates to `true`.
+    /// - Parameters:
+    ///   - condition: The condition to evaluate.
+    ///   - transform: The transform to apply to the source `View`.
+    /// - Returns: Either the original `View` or the modified `View` if the condition is `true`.
+    @ViewBuilder func `if`<Content: View>(_ condition: Bool, transform: (Self) -> Content) -> some View {
+        if condition {
+            transform(self)
+        } else {
+            self
+        }
+    }
+}
+
 #endif

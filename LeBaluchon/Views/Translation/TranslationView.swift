@@ -18,7 +18,6 @@ struct TranslationView: View {
     var body: some View {
         NavigationView {
             form
-                .endTextEditing()
         }
         .sheet(isPresented: $selectTarget) {
             SelectTargetSheet(viewModel: self.viewModel, text: text)
@@ -49,8 +48,7 @@ extension TranslationView {
             if !self.viewModel.autoloadSource {
                 Section("Source") {
                     Picker("Source language", selection: $viewModel.source) {
-                        
-                        ForEach($viewModel.langs.indices, id: \.self) { index in
+                        ForEach(viewModel.langs.indices, id: \.self) { index in
                             let lang = viewModel.langs[index]
                             langListView(lang: lang)
                         }
@@ -62,7 +60,6 @@ extension TranslationView {
             Section("Translate") {
                 TextEditor(text: $text)
                     .frame(minHeight: 100, alignment: .leading)
-                    .foregroundColor(.black)
                     .multilineTextAlignment(.leading)
                     .modifier(TextFieldClearButton(text: $text))
                     .modifier(TextFieldPlacehorlder(text: $text, placeholder: placeholderText))
@@ -71,24 +68,16 @@ extension TranslationView {
             
             Section("Actions") {
                 Button {
-                    //self.selectTarget = true
+                    self.selectTarget = true
                 } label: {
                     Text("Translate")
                 }
-                .highPriorityGesture(TapGesture()
-                    .onEnded({ _ in
-                        self.selectTarget = true
-                    }))
                 
                 Button {
-                    //self.selectTarget = true
+                    self.viewModel.performForText(text)
                 } label: {
                     Text("Direct translate in \(viewModel.getTargetLabel())")
                 }
-                .highPriorityGesture(TapGesture()
-                    .onEnded({ _ in
-                        self.viewModel.performForText(text)
-                    }))
             }
             
             Section("Translation") {
@@ -107,7 +96,6 @@ extension TranslationView {
                 
                 Button {
                     self.viewModel.switchLanguage()
-                    
                     self.viewModel.autoloadSource = false
                 } label: {
                     Image(systemName: "arrow.left.arrow.right.square")
@@ -137,7 +125,7 @@ struct SelectTargetSheet: View {
         NavigationView {
             Form {
                 Picker("Select a target language", selection: $viewModel.target) {
-                    ForEach($viewModel.langs.indices, id: \.self) { index in
+                    ForEach(viewModel.langs.indices, id: \.self) { index in
                         let lang = viewModel.langs[index]
                         langListView(lang: lang)
                             .id(lang.language)

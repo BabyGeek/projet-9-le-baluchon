@@ -11,14 +11,17 @@ class TranslationViewModel: NetworkManager, ObservableObject {
     @Published var error: AppError? = nil
     @Published var results: TranslationDictionnary? = nil
     @Published var autoloadSource: Bool = true
-    @Published var langs: [TranslationLanguage] = [TranslationLanguage]()
     @Published var source: String = "en"
     @Published var target: String = "vi"
     
     
     private let url: String = ApiConstants.translationAPIURL
     private let apiKey: String = ApiConstants.translationAPIKEY
-    private var langDictionnary: TranslationLanguageDictionnary? = nil
+    private var langDictionnary: TranslationLanguageDictionnary = TranslationLanguageDictionnary(languages: [TranslationLanguage]())
+    
+    var langs: [TranslationLanguage] {
+        return langDictionnary.languages.sorted(by: { $0.name < $1.name })
+    }
     
     override init() {
         super.init()
@@ -44,7 +47,6 @@ class TranslationViewModel: NetworkManager, ObservableObject {
             } onFailure: { error in
                 self.error = AppError(error: error)
             }
-
         }
     }
 #endif
@@ -57,19 +59,11 @@ class TranslationViewModel: NetworkManager, ObservableObject {
     }
     
     public func getSourceLabel() -> String {
-        guard let dictionnary = self.langDictionnary else {
-            return ""
-        }
-        
-        return dictionnary.getNameForLanguage(self.source)
+        return langDictionnary.getNameForLanguage(self.source)
     }
     
     public func getTargetLabel() -> String {
-        guard let dictionnary = self.langDictionnary else {
-            return ""
-        }
-        
-        return dictionnary.getNameForLanguage(self.target)
+        return langDictionnary.getNameForLanguage(self.target)
     }
     
     /// Load langs from API
@@ -77,7 +71,6 @@ class TranslationViewModel: NetworkManager, ObservableObject {
         if let url = self.getURL(resource: "languages", params: [URLQueryItem(name: "target", value: self.source)]) {
             self.loadData(urlRequest: url) { (languageDictionnary: TranslationLanguageData) in
                 self.langDictionnary = languageDictionnary.data
-                self.langs = languageDictionnary.data.languages.sorted(by: { $0.name < $1.name })
             } onFailure: { error in
                 self.error = AppError(error: error)
             }
@@ -98,7 +91,6 @@ class TranslationViewModel: NetworkManager, ObservableObject {
         }
         
         var urlComponent = URLComponents(string: url)
-        
         
         let baseParams = [
             URLQueryItem(name: "key", value: self.apiKey),

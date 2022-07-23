@@ -62,9 +62,9 @@ extension AppTabBarView {
             }
         }
         .padding(6)
-        .background(Color.white.ignoresSafeArea(edges: .bottom))
+        .background(Color(UIColor.systemBackground).ignoresSafeArea(edges: .bottom))
         .cornerRadius(10)
-        .shadow(color: .black.opacity(0.3), radius: 10, x: 0, y: 5)
+        .shadow(color: Color("tabBarShadow").opacity(0.3), radius: 10, x: 0, y: 5)
         .padding(.horizontal)
     }
     
