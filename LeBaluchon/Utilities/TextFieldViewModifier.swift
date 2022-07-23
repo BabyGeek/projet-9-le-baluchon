@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 #if DEBUG
+/// Add a clear button when entered text is not empty
 struct TextFieldClearButton: ViewModifier {
     @Binding var text: String
     
@@ -27,4 +28,35 @@ struct TextFieldClearButton: ViewModifier {
         }
     }
 }
+
+/// Add a placeholder to the text field when the text is empty
+struct TextFieldPlacehorlder: ViewModifier {
+    @Binding var text: String
+    @State var placeholder: String
+    
+    func body(content: Content) -> some View {
+        ZStack {
+            if text.isEmpty {
+                TextEditor(text: $placeholder)
+                    .font(.body)
+                    .foregroundColor(.gray)
+                    .disabled(true)
+            }
+            
+            content
+        }
+    }
+}
+
+
+extension View {
+    /// Add extention to dismiss keyboard display on view click
+    func endTextEditing() -> some View {
+      return self.onTapGesture {
+          UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder),
+                to: nil, from: nil, for: nil)
+      }
+  }
+}
+
 #endif
