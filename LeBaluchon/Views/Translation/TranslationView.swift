@@ -19,18 +19,21 @@ struct TranslationView: View {
     var body: some View {
         NavigationView {
             form
+                .onTapGesture {
+                    self.textIsFocused = false
+                }
                 .navigationTitle("Translation")
                 .toolbar {
                     ToolbarItemGroup(placement: .navigationBarTrailing) {
-                    
+                        
                         Button {
                             self.viewModel.switchLanguage()
-
+                            
                             self.viewModel.autoloadSource = false
                         } label: {
                             Image(systemName: "arrow.left.arrow.right.square")
                         }
-
+                        
                         Spacer()
                         
                         Button {
@@ -84,32 +87,29 @@ extension TranslationView {
             
             
             Section("Translate") {
-                ZStack {
-                    if self.text.isEmpty {
-                        TextEditor(text:$placeholderText)
-                            .font(.body)
-                            .foregroundColor(.gray)
-                            .disabled(true)
-                    }
-                    
                     TextEditor(text: $text)
                         .frame(minHeight: 100, alignment: .leading)
                         .foregroundColor(.black)
                         .multilineTextAlignment(.leading)
                         .focused($textIsFocused)
                         .modifier(TextFieldClearButton(text: $text))
-                }
+                        .modifier(TextFieldPlacehorlder(text: $text, placeholder: placeholderText))
+                
             }
             
             Section("Actions") {
                 
-                Button("Translate") {
-                    self.selectTarget = true
-                }
+                Text("Translate")
+                    .onTapGesture {
+                        self.selectTarget = true
+                    }
+                    .foregroundColor(.blue)
                 
-                Button("Direct translate in \(viewModel.getTargetLabel())") {
-                    self.viewModel.performForText(text)
-                }
+                Text("Direct translate in \(viewModel.getTargetLabel())")
+                    .onTapGesture {
+                        self.viewModel.performForText(text)
+                    }
+                    .foregroundColor(.blue)
             }
             
             Section("Translation") {
@@ -122,6 +122,7 @@ extension TranslationView {
                 }
             }
         }
+        .endTextEditing()
     }
 }
 
