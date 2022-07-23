@@ -50,7 +50,7 @@ extension TranslationView {
                 Section("Source") {
                     Picker("Source language", selection: $viewModel.source) {
                         
-                        ForEach($viewModel.langs.indices, id: \.self) { index in
+                        ForEach(viewModel.langs.indices, id: \.self) { index in
                             let lang = viewModel.langs[index]
                             langListView(lang: lang)
                         }
@@ -137,7 +137,7 @@ struct SelectTargetSheet: View {
         NavigationView {
             Form {
                 Picker("Select a target language", selection: $viewModel.target) {
-                    ForEach($viewModel.langs.indices, id: \.self) { index in
+                    ForEach(viewModel.langs.indices, id: \.self) { index in
                         let lang = viewModel.langs[index]
                         langListView(lang: lang)
                             .id(lang.language)
