@@ -47,16 +47,4 @@ struct TextFieldPlacehorlder: ViewModifier {
         }
     }
 }
-
-
-extension View {
-    /// Add extention to dismiss keyboard display on view click
-    func endTextEditing() -> some View {
-      return self.onTapGesture {
-          UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder),
-                to: nil, from: nil, for: nil)
-      }
-  }
-}
-
 #endif
