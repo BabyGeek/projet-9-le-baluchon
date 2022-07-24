@@ -43,4 +43,4 @@ LightMode            |  DarkMode
 ### Quick demo
 LightMode            |  DarkMode
 :-------------------------:|:-------------------------:
-[![](images/launchScreen_l.PNG)](videos/demo_l.MP4)|[![](images/launchScreen_d.PNG)](videos/demo_d.MP4)
+[![](images/launchScreen_l.PNG)](videos/demo_l.MOV)|[![](images/launchScreen_d.PNG)](videos/demo_d.MOV)
