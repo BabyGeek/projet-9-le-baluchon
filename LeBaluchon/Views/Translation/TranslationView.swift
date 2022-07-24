@@ -18,6 +18,28 @@ struct TranslationView: View {
     var body: some View {
         NavigationView {
             form
+                .navigationTitle("Translation")
+                .toolbar {
+                    ToolbarItemGroup(placement: .navigationBarTrailing) {
+
+                        Button {
+                            self.viewModel.switchLanguage()
+                            self.viewModel.autoloadSource = false
+                        } label: {
+                            Image(systemName: "arrow.left.arrow.right.square")
+                        }
+
+                        Spacer()
+
+                        Button {
+                            withAnimation {
+                                self.viewModel.autoloadSource.toggle()
+                            }
+                        } label: {
+                            Image(systemName: self.viewModel.autoloadSource ? "star.bubble.fill" : "star.bubble")
+                        }
+                    }
+                }
         }
         .sheet(isPresented: $selectTarget) {
             SelectTargetSheet(viewModel: self.viewModel, text: text)
@@ -86,28 +108,6 @@ extension TranslationView {
                     Text("Loading...")
                 } else {
                     Text("Nothing to translate yet")
-                }
-            }
-        }
-        .navigationTitle("Translation")
-        .toolbar {
-            ToolbarItemGroup(placement: .navigationBarTrailing) {
-
-                Button {
-                    self.viewModel.switchLanguage()
-                    self.viewModel.autoloadSource = false
-                } label: {
-                    Image(systemName: "arrow.left.arrow.right.square")
-                }
-
-                Spacer()
-
-                Button {
-                    withAnimation {
-                        self.viewModel.autoloadSource.toggle()
-                    }
-                } label: {
-                    Image(systemName: self.viewModel.autoloadSource ? "star.bubble.fill" : "star.bubble")
                 }
             }
         }
