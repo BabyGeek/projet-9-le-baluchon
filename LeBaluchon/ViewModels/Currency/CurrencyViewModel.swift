@@ -127,8 +127,6 @@ class CurrencyViewModel: NetworkManager, ObservableObject {
             url.append("/\(param)")
         }
         
-        
-        
         return URL(string: url)
     }
 }
