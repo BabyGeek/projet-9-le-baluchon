@@ -28,8 +28,8 @@ class WeatherViewModel: NetworkManager, ObservableObject {
     ///   - setTarget: Define if the requested weather is the target or not, false by default
     public func perform(lat latitude: Double, lon longitude: Double, setTarget: Bool = false) {
         let params = [
-            URLQueryItem(name: "lat", value: latitude.formatted()),
-            URLQueryItem(name: "lon", value: longitude.formatted())
+            URLQueryItem(name: "lat", value: String(format: "%f", latitude)),
+            URLQueryItem(name: "lon", value: String(format: "%f", longitude))
         ]
         
         guard let url = self.getQueryURL(params: params) else {

@@ -12,18 +12,11 @@ import SwiftUI
 /// View for the currency page
 struct CurrencyView: View {
     @StateObject private var viewModel = CurrencyViewModel()
-    @State var from: String = "EUR"
-    @State var to: String = "USD"
-    @State var amount: Double = 1
     
     var body: some View {
         NavigationView {
             form
                 .navigationTitle("Exchange")
-        }
-        .onAppear {
-            viewModel.performSymbols()
-            viewModel.perform(from: "EUR", to: "USD", amount: 1)
         }
         .alert(item: $viewModel.error) { error in
             guard let descrition = error.error.errorDescription, let message = error.error.failureReason else {
@@ -51,16 +44,14 @@ extension CurrencyView {
         Form {
             
             Button("Switch currencies") {
-                let tempFrom = from
-                from = to
-                to = tempFrom
+                viewModel.switchCurrencies()
             }
             
-            Section("Convert a currency") {
-                TextField("Amount", value: $amount, format: .number)
+            Section(header: Text("Convert a currency")) {
+                TextField("Amount", text: $viewModel.amount)
                     .keyboardType(.decimalPad)
                 
-                Picker("From", selection: $from) {
+                Picker("From", selection: $viewModel.source) {
                     
                     ForEach($viewModel.symbols.indices, id: \.self) { index in
                         let symbol = viewModel.symbols[index]
@@ -68,7 +59,7 @@ extension CurrencyView {
                     }
                 }
                 
-                Picker("To", selection: $to) {
+                Picker("To", selection: $viewModel.target) {
                     ForEach($viewModel.symbols.indices, id: \.self) { index in
                         let symbol = viewModel.symbols[index]
                         symbolListView(symbol: symbol)
@@ -81,11 +72,9 @@ extension CurrencyView {
                 self.updateResult()
             }
             
-            
-            
-            if let result = viewModel.result {
-                Section("Result") {
-                    Text("\(amount.formatted(.currency(code: from))) = \(result.result.formatted(.currency(code: to))) ")
+            if let _ = viewModel.result {
+                Section(header: Text("Result")) {
+                    Text("\(viewModel.getLocaleStringFor()) = \(viewModel.getLocaleStringFor(.target)) ")
                 }
             }
         }
@@ -96,7 +85,7 @@ extension CurrencyView {
 extension CurrencyView {
     /// Call viewModel to update the result displayed
     private func updateResult() {
-        viewModel.perform(from: from, to: to, amount: amount)
+        viewModel.perform()
     }
 }
 

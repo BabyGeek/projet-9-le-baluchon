@@ -16,12 +16,12 @@ struct WeatherView: View {
         NavigationView {
             List() {
                 if let target = viewModel.target {
-                    Section("Destination") {
+                    Section(header: Text("Destination")) {
                         WeatherRowView(weather: target)
                     }
                 }
                 
-                Section("Favorites") {
+                Section(header: Text("Favorites")) {
                     ForEach(viewModel.favorites, id: \.self) { weather in
                         WeatherRowView(weather: weather)
                     }

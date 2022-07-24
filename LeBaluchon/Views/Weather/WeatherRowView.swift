@@ -43,7 +43,7 @@ struct MainContent: View {
     
     var body: some View {
         VStack(alignment: .center, spacing: 8) {
-            Text("\(weather.temp.formatted())°C")
+            Text("\(weather.temp)°C")
             HStack(alignment: .center, spacing: 8) {
                 HStack(alignment: .center, spacing: 8) {
                     Image(systemName: "thermometer.sun.fill")

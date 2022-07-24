@@ -46,7 +46,7 @@ extension TranslationView {
     private var form: some View {
         Form {
             if !self.viewModel.autoloadSource {
-                Section("Source") {
+                Section(header: Text("Source")) {
                     Picker("Source language", selection: $viewModel.source) {
                         ForEach(viewModel.langs.indices, id: \.self) { index in
                             let lang = viewModel.langs[index]
@@ -57,7 +57,7 @@ extension TranslationView {
             }
             
             
-            Section("Translate") {
+            Section(header: Text("Translate")) {
                 TextEditor(text: $text)
                     .frame(minHeight: 100, alignment: .leading)
                     .multilineTextAlignment(.leading)
@@ -66,7 +66,7 @@ extension TranslationView {
                 
             }
             
-            Section("Actions") {
+            Section(header: Text("Actions")) {
                 Button {
                     self.selectTarget = true
                 } label: {
@@ -83,7 +83,7 @@ extension TranslationView {
                 
             }
             
-            Section("Translation") {
+            Section(header: Text("Translation")) {
                 if let results = viewModel.results {
                     Text(results.getText())
                 }else if viewModel.isLoading {

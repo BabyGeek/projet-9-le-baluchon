@@ -76,4 +76,22 @@ class CurrencyUnitTests: XCTestCase {
         let currencySymbol = CurrencySymbol(code: "ZZZ", name: "ZCoin")
         XCTAssertNil(currencySymbol.getSymbol())
     }
+    
+    func testGivenSourceEURAndTargetVNDWhenSwitchCurrenciesThenLanguagesShouldHaveInvert() throws {
+        XCTAssertEqual(viewModel.source, "EUR")
+        XCTAssertEqual(viewModel.target, "VND")
+        
+        viewModel.switchCurrencies()
+        
+        XCTAssertEqual(viewModel.source, "VND")
+        XCTAssertEqual(viewModel.target, "EUR")
+    }
+    
+    func testGivenNewObjectSourceEURAndTargetVNDWhenGettingLocaleStringThenStringShouldBe1() throws {
+        XCTAssertEqual(viewModel.getLocaleStringFor(), "€1,00")
+    }
+    
+    func testGivenNewObjectSourceEURAndTargetVNDWhenGettingLocaleForTargetStringThenStringShouldBeEmpty() throws {
+        XCTAssertEqual(viewModel.getLocaleStringFor(.target), "")
+    }
 }
