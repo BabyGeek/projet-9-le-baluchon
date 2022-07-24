@@ -87,11 +87,17 @@ class CurrencyUnitTests: XCTestCase {
         XCTAssertEqual(viewModel.target, "EUR")
     }
 
-    func testGivenNewObjectSourceEURAndTargetVNDWhenGettingLocaleStringThenStringShouldBe1() throws {
-        XCTAssertEqual(viewModel.getLocaleStringFor(), "€1,00")
-    }
-
     func testGivenNewObjectSourceEURAndTargetVNDWhenGettingLocaleForTargetStringThenStringShouldBeEmpty() throws {
         XCTAssertEqual(viewModel.getLocaleStringFor(.target), "")
+    }
+
+    func testGivenNewObjectSourceEURAndTargetVNDWhenGettingLocaleStringThenStringShouldBe1Dollar() throws {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.locale = Locale.current
+
+        if let formattedAmount = formatter.string(from: 1.0 as NSNumber) {
+            XCTAssertEqual(viewModel.getLocaleStringFor(), formattedAmount)
+        }
     }
 }
