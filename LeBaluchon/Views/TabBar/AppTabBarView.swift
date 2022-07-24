@@ -14,7 +14,7 @@ struct AppTabBarView: View {
     @Binding var selection: TabBarItem
     @Namespace private var namespace
     @State var localSelection: TabBarItem
-    
+
     var body: some View {
         TabBar
             .onChange(of: selection) { newValue in
@@ -33,7 +33,7 @@ extension AppTabBarView {
         VStack {
             Image(systemName: item.iconName)
                 .frame(height: 12, alignment: .center)
-            
+
             Text(item.title)
                 .font(.caption)
         }
@@ -50,7 +50,7 @@ extension AppTabBarView {
             }
         )
     }
-    
+
     /// Tab bar display, go through each item and display a tabView and add tap gesture
     private var TabBar: some View {
         HStack {
@@ -67,7 +67,7 @@ extension AppTabBarView {
         .shadow(color: Color("tabBarShadow").opacity(0.3), radius: 10, x: 0, y: 5)
         .padding(.horizontal)
     }
-    
+
     /// Allow swicthing between each tabs
     /// - Parameter tab: the tab to switch to
     private func switchToTab(tab: TabBarItem) {
@@ -81,7 +81,7 @@ struct CustomTabBarView_Previews: PreviewProvider {
         .exchange,
         .translate
     ]
-    
+
     static var previews: some View {
         VStack {
             Spacer()

@@ -12,7 +12,7 @@ import SwiftUI
 /// Tab Bar preference key to allow to handle the tabs selections
 struct TabBarItemsPreferenceKey: PreferenceKey {
     static var defaultValue: [TabBarItem] = [TabBarItem]()
-    
+
     /// Allow to add multiple values to the tab bar
     /// - Parameters:
     ///   - value: current value
@@ -22,12 +22,11 @@ struct TabBarItemsPreferenceKey: PreferenceKey {
     }
 }
 
-
 /// View used with the .tabBarItem modifier
 struct TabBarItemViewModifier: ViewModifier {
     let tab: TabBarItem
     @Binding var selection: TabBarItem
-    
+
     func body(content: Content) -> some View {
         content
             .opacity(selection == tab ? 1.0 : 0.0)
@@ -35,9 +34,9 @@ struct TabBarItemViewModifier: ViewModifier {
     }
 }
 
-
 extension View {
-    /// .tabBarItem modifier for View objects, allows you to register the tab and selection corresponding to the View attached
+    /// .tabBarItem modifier for View objects,
+    /// allows you to register the tab and selection corresponding to the View attached
     /// - Parameters:
     ///   - tab: tab corresponding to the tab bar item
     ///   - selection: current tab selected

@@ -21,3 +21,7 @@ extension CurrencySymbol {
         return locale.displayName(forKey: .currencySymbol, value: code)
     }
 }
+
+enum CurrencyType {
+    case source, target
+}

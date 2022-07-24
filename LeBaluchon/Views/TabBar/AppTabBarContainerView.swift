@@ -9,25 +9,25 @@
 import SwiftUI
 
 /// Tab bar container, contains the views, the tab bar items, and make all in the same ZStack
-struct AppTabBarContainerView<Content:View>: View {
-    
+struct AppTabBarContainerView<Content: View>: View {
+
     @Binding var selection: TabBarItem
     @State private var tabs: [TabBarItem] = [TabBarItem]()
     @State private var keyboardEnabled: Bool = false
-    
+
     let content: Content
-    
+
     init(selection: Binding<TabBarItem>, @ViewBuilder content: () -> Content) {
         self._selection = selection
         self.content = content()
     }
-    
+
     var body: some View {
         ZStack(alignment: .bottom) {
             content
                 .ignoresSafeArea()
                 .endTextEditing(including: keyboardEnabled ? .all : .subviews)
-            
+
             if !self.keyboardEnabled {
                 AppTabBarView(tabs: tabs, selection: $selection, localSelection: selection)
             }
@@ -52,7 +52,7 @@ struct TabBarContainerView_Previews: PreviewProvider {
         .exchange,
         .translate
     ]
-    
+
     static var previews: some View {
         AppTabBarContainerView(selection: .constant(tabs.first!)) {
             Color.red

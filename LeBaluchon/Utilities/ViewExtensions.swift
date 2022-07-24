@@ -4,11 +4,9 @@
 //
 //  Created by Paul Oggero on 23/07/2022.
 //
-
+#if DEBUG
 import Foundation
 import SwiftUI
-
-
 
 extension View {
     /// Add extention to dismiss keyboard display on view click
@@ -21,8 +19,6 @@ extension View {
     }
 }
 
-
-
 extension View {
     /// Change the default behavior for landscape style view on iphone
     @ViewBuilder func phoneOnlyNavigationView() -> some View {
@@ -33,3 +29,4 @@ extension View {
         }
     }
 }
+#endif

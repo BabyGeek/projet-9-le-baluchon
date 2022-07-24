@@ -22,7 +22,7 @@ struct WeatherType: Codable, Hashable {
     let main: String
     let description: String
     let icon: String
-    
+
     var symbol: Image {
         switch self.id {
         case 200...232:
@@ -53,13 +53,13 @@ struct WheatherSys: Codable, Hashable {
 }
 
 /// Weather main model
-struct WeatherMain: Codable, Hashable  {
+struct WeatherMain: Codable, Hashable {
     let temp: Double
     let tempMin: Double
     let tempMax: Double
     let pressure: Int
     let humidity: Int
-    
+
     enum CodingKeys: String, CodingKey {
         case tempMin = "temp_min"
         case tempMax = "temp_max"

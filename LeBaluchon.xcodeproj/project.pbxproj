@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2B121F9D288CA54900D29446 /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B121F9C288CA54900D29446 /* ViewExtensions.swift */; };
 		2B121F9F288D2D8900D29446 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B121F9E288D2D8900D29446 /* Launch Screen.storyboard */; };
+		2B121FA1288D394200D29446 /* EnvironmentValuesExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B121FA0288D394200D29446 /* EnvironmentValuesExtensions.swift */; };
 		2B2F094C2882D9560013E438 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2F094B2882D9560013E438 /* TabBarView.swift */; };
 		2B2F094E288417EC0013E438 /* AppTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2F094D288417EC0013E438 /* AppTabBarView.swift */; };
 		2B2F095128841B670013E438 /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2F095028841B670013E438 /* TabBarItem.swift */; };
@@ -87,6 +88,7 @@
 /* Begin PBXFileReference section */
 		2B121F9C288CA54900D29446 /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
 		2B121F9E288D2D8900D29446 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		2B121FA0288D394200D29446 /* EnvironmentValuesExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentValuesExtensions.swift; sourceTree = "<group>"; };
 		2B2F094B2882D9560013E438 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		2B2F094D288417EC0013E438 /* AppTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabBarView.swift; sourceTree = "<group>"; };
 		2B2F095028841B670013E438 /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 				2B992D4028889C3300DBAC4F /* NetworkError.swift */,
 				2BC3FB34288B4223009A8A1F /* TextFieldViewModifier.swift */,
 				2B121F9C288CA54900D29446 /* ViewExtensions.swift */,
+				2B121FA0288D394200D29446 /* EnvironmentValuesExtensions.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -382,6 +385,7 @@
 				2BC5B4E0287DF061003BC4E2 /* Sources */,
 				2BC5B4E1287DF061003BC4E2 /* Frameworks */,
 				2BC5B4E2287DF061003BC4E2 /* Resources */,
+				2B121FA2288D58D200D29446 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -512,6 +516,26 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2B121FA2288D58D200D29446 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nexport PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		2BC5B4E0287DF061003BC4E2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -537,6 +561,7 @@
 				2B2F095E288449740013E438 /* CurrencyView.swift in Sources */,
 				2B7075592889EF4900CD7256 /* TranslationLanguageDictionnary.swift in Sources */,
 				2BC5B4E8287DF061003BC4E2 /* LeBaluchonApp.swift in Sources */,
+				2B121FA1288D394200D29446 /* EnvironmentValuesExtensions.swift in Sources */,
 				2B2F096028844A710013E438 /* ExchangeRateResult.swift in Sources */,
 				2BC3FB35288B4223009A8A1F /* TextFieldViewModifier.swift in Sources */,
 				2B2F09552884309F0013E438 /* TabBarItemsPreferenceKey.swift in Sources */,
@@ -595,6 +620,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -627,6 +653,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -641,7 +668,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -724,6 +751,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -756,6 +784,8 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				EXCLUDED_ARCHS = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -770,7 +800,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -784,6 +814,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -816,6 +847,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -824,7 +856,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

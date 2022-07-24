@@ -12,18 +12,11 @@ import SwiftUI
 /// View for the currency page
 struct CurrencyView: View {
     @StateObject private var viewModel = CurrencyViewModel()
-    @State var from: String = "EUR"
-    @State var to: String = "USD"
-    @State var amount: Double = 1
-    
+
     var body: some View {
         NavigationView {
             form
                 .navigationTitle("Exchange")
-        }
-        .onAppear {
-            viewModel.performSymbols()
-            viewModel.perform(from: "EUR", to: "USD", amount: 1)
         }
         .alert(item: $viewModel.error) { error in
             guard let descrition = error.error.errorDescription, let message = error.error.failureReason else {
@@ -31,7 +24,7 @@ struct CurrencyView: View {
                     title: Text(NetworkError.unknown.errorDescription!),
                     message: Text(NetworkError.unknown.failureReason!))
             }
-            
+
             return Alert(
                 title: Text(descrition),
                 message: Text(message))
@@ -49,61 +42,58 @@ extension CurrencyView {
     /// Form view for the currency page
     private var form: some View {
         Form {
-            
+
             Button("Switch currencies") {
-                let tempFrom = from
-                from = to
-                to = tempFrom
+                viewModel.switchCurrencies()
             }
-            
-            Section("Convert a currency") {
-                TextField("Amount", value: $amount, format: .number)
+
+            Section(header: Text("Convert a currency")) {
+                TextField("Amount", text: $viewModel.amount)
                     .keyboardType(.decimalPad)
-                
-                Picker("From", selection: $from) {
-                    
+
+                Picker("From", selection: $viewModel.source) {
                     ForEach($viewModel.symbols.indices, id: \.self) { index in
                         let symbol = viewModel.symbols[index]
-                        symbolListView(symbol: symbol)
+                        SymbolListView(symbol: symbol)
                     }
                 }
-                
-                Picker("To", selection: $to) {
+
+                Picker("To", selection: $viewModel.target) {
                     ForEach($viewModel.symbols.indices, id: \.self) { index in
                         let symbol = viewModel.symbols[index]
-                        symbolListView(symbol: symbol)
+                        SymbolListView(symbol: symbol)
                     }
                 }
-                
             }
-            
+
             Button("Update result") {
                 self.updateResult()
             }
-            
-            
-            
-            if let result = viewModel.result {
-                Section("Result") {
-                    Text("\(amount.formatted(.currency(code: from))) = \(result.result.formatted(.currency(code: to))) ")
+
+            Section(header: Text("Result")) {
+                if viewModel.isLoading {
+                    Text("Loading...")
+                } else {
+                    Text(viewModel.result != nil ?
+                         "\(viewModel.getLocaleStringFor()) = \(viewModel.getLocaleStringFor(.target))"
+                         : "No exchange done yet.")
                 }
             }
         }
     }
 }
 
-
 extension CurrencyView {
     /// Call viewModel to update the result displayed
     private func updateResult() {
-        viewModel.perform(from: from, to: to, amount: amount)
+        viewModel.perform()
     }
 }
 
 /// Symbol view for select list
-struct symbolListView: View {
+struct SymbolListView: View {
     let symbol: CurrencySymbol
-    
+
     var body: some View {
         if let symbolCurrency = symbol.getSymbol() {
             Text("\(symbol.code) - \(symbolCurrency)")

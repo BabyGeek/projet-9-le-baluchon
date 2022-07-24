@@ -13,7 +13,7 @@ struct TranslationData: Codable, Hashable {
 
 struct TranslationDictionnary: Codable, Hashable {
     let translations: [Translation]
-    
+
     func getText() -> String {
         let texts = translations.map { $0.translatedText }
         return texts.joined(separator: " ")
@@ -23,11 +23,11 @@ struct TranslationDictionnary: Codable, Hashable {
 struct Translation: Codable, Identifiable, Hashable {
     let id: UUID
     let translatedText: String
-    
+
     private enum CodingKeys: String, CodingKey {
         case id, translatedText
     }
-    
+
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decodeIfPresent(UUID.self, forKey: .id) ?? UUID()

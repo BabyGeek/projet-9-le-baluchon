@@ -20,7 +20,7 @@ class TranslationUnitTests: XCTestCase {
     func testGivenNewWhenCheckingShouldBeNilOrEmptyExceptSourceTargetAndLangs() throws {
         XCTAssertNil(viewModel.results)
         XCTAssertNil(viewModel.error)
-        
+
         XCTAssertFalse(viewModel.isLoading)
 
         XCTAssertNotNil(viewModel.langs)
@@ -40,12 +40,12 @@ class TranslationUnitTests: XCTestCase {
             let first = languageDictionnary.data.languages.first!
             XCTAssertEqual(first.language, "bh")
             expectation.fulfill()
-        } onFailure: { error in
+        } onFailure: { _ in
             //
         }
         wait(for: [expectation], timeout: 3)
     }
-    
+
     func testGivenNoneWhenFetchingLanguagesThenDirectoryShouldFindEnglishForen() throws {
         let url = Bundle.main.url(forResource: "langs", withExtension: "json")!
         let expectation = XCTestExpectation()
@@ -54,12 +54,12 @@ class TranslationUnitTests: XCTestCase {
             let dictionnary = languageDictionnary.data
             XCTAssertEqual(dictionnary.getNameForLanguage("en"), "English")
             expectation.fulfill()
-        } onFailure: { error in
+        } onFailure: { _ in
             //
         }
         wait(for: [expectation], timeout: 3)
     }
-    
+
     func testGivenNoneWhenFetchingTranslateThenResponseTextShouldBeBonjour() throws {
         let url = Bundle.main.url(forResource: "translate", withExtension: "json")!
         let expectation = XCTestExpectation()
@@ -68,22 +68,20 @@ class TranslationUnitTests: XCTestCase {
             let text = translationData.data.getText()
             XCTAssertEqual(text, "Bonjour")
             expectation.fulfill()
-        } onFailure: { error in
+        } onFailure: { _ in
             //
         }
         wait(for: [expectation], timeout: 3)
     }
-    
+
     func testGivenSourceENAndTargetVIWhenSwitchLanguagesThenLanguagesShouldHaveInvert() throws {
         XCTAssertEqual(viewModel.source, "en")
         XCTAssertEqual(viewModel.target, "vi")
-        
+
         viewModel.switchLanguage()
-        
+
         XCTAssertEqual(viewModel.source, "vi")
         XCTAssertEqual(viewModel.target, "en")
-        
+
     }
-    
-    
 }

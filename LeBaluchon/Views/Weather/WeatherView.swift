@@ -11,17 +11,17 @@ import SwiftUI
 /// Weather view page
 struct WeatherView: View {
     @StateObject var viewModel = WeatherViewModel()
-    
+
     var body: some View {
         NavigationView {
-            List() {
+            List {
                 if let target = viewModel.target {
-                    Section("Destination") {
+                    Section(header: Text("Destination")) {
                         WeatherRowView(weather: target)
                     }
                 }
-                
-                Section("Favorites") {
+
+                Section(header: Text("Favorites")) {
                     ForEach(viewModel.favorites, id: \.self) { weather in
                         WeatherRowView(weather: weather)
                     }
@@ -41,7 +41,7 @@ struct WeatherView: View {
                     title: Text(NetworkError.unknown.errorDescription!),
                     message: Text(NetworkError.unknown.failureReason!))
             }
-            
+
             return Alert(
                 title: Text(descrition),
                 message: Text(message))
