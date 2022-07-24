@@ -6,6 +6,7 @@
 //
 
 @testable import LeBaluchon
+import SwiftUI
 import XCTest
 
 class WeatherUnitTests: XCTestCase {
@@ -68,5 +69,22 @@ class WeatherUnitTests: XCTestCase {
             let weatherType = WeatherType(id: key, main: "test", description: "test", icon: "test")
             XCTAssertEqual(weatherType.symbol, value)
         }
+    }
+
+    func testGivenWeatherMainObjectWhenInitializeWithValuesThenGetTempShouldReturnMeasurementStringWithValueCalled() {
+        let weather = WeatherMain(temp: 33.8, tempMin: 25.7, tempMax: 42, pressure: 200, humidity: 90)
+
+        XCTAssertEqual(weather.getTemp(type: .temp),
+                       MeasurementFormatter().string(from:
+                                                        Measurement(value: weather.temp,
+                                                                    unit: UnitTemperature.celsius)))
+        XCTAssertEqual(weather.getTemp(type: .tempMax),
+                       MeasurementFormatter().string(from:
+                                                        Measurement(value: weather.tempMax,
+                                                                    unit: UnitTemperature.celsius)))
+        XCTAssertEqual(weather.getTemp(type: .tempMin),
+                       MeasurementFormatter().string(from:
+                                                        Measurement(value: weather.tempMin,
+                                                                    unit: UnitTemperature.celsius)))
     }
 }
