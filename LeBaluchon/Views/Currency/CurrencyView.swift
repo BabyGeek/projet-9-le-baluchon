@@ -17,6 +17,15 @@ struct CurrencyView: View {
         NavigationView {
             form
                 .navigationTitle("Exchange")
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button {
+                            self.viewModel.switchCurrencies()
+                        } label: {
+                            Image(systemName: "arrow.left.arrow.right.square")
+                        }
+                    }
+                }
         }
         .alert(item: $viewModel.error) { error in
             guard let descrition = error.error.errorDescription, let message = error.error.failureReason else {
@@ -42,11 +51,6 @@ extension CurrencyView {
     /// Form view for the currency page
     private var form: some View {
         Form {
-
-            Button("Switch currencies") {
-                viewModel.switchCurrencies()
-            }
-
             Section(header: Text("Convert a currency")) {
                 TextField("Amount", text: $viewModel.amount)
                     .keyboardType(.decimalPad)
