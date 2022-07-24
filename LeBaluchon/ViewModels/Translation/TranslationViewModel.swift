@@ -10,6 +10,7 @@ import Foundation
 class TranslationViewModel: NetworkManager, ObservableObject {
     @Published var error: AppError? = nil
     @Published var results: TranslationDictionnary? = nil
+    @Published var langs: [TranslationLanguage] = [TranslationLanguage]()
     @Published var autoloadSource: Bool = true
     @Published var source: String = "en"
     @Published var target: String = "vi"
@@ -19,9 +20,6 @@ class TranslationViewModel: NetworkManager, ObservableObject {
     private let apiKey: String = ApiConstants.translationAPIKEY
     private var langDictionnary: TranslationLanguageDictionnary = TranslationLanguageDictionnary(languages: [TranslationLanguage]())
     
-    var langs: [TranslationLanguage] {
-        return langDictionnary.languages.sorted(by: { $0.name < $1.name })
-    }
     
     override init() {
         super.init()
@@ -71,6 +69,7 @@ class TranslationViewModel: NetworkManager, ObservableObject {
         if let url = self.getURL(resource: "languages", params: [URLQueryItem(name: "target", value: self.source)]) {
             self.loadData(urlRequest: url) { (languageDictionnary: TranslationLanguageData) in
                 self.langDictionnary = languageDictionnary.data
+                self.langs = self.langDictionnary.languages.sorted(by: { $0.name < $1.name })
             } onFailure: { error in
                 self.error = AppError(error: error)
             }

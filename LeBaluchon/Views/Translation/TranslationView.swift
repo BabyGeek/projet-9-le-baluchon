@@ -78,6 +78,9 @@ extension TranslationView {
                 } label: {
                     Text("Direct translate in \(viewModel.getTargetLabel())")
                 }
+                
+                
+                
             }
             
             Section("Translation") {
