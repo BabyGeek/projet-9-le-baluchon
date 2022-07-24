@@ -67,4 +67,19 @@ struct WeatherMain: Codable, Hashable {
         case pressure
         case humidity
     }
+
+    func getTemp(type: CodingKeys = .temp) -> String {
+        var value: Double = 0
+
+        if type == .temp {
+            value = temp
+        } else if type == .tempMax {
+            value = tempMax
+        } else if type == .tempMin {
+            value = tempMin
+        }
+
+        let measurement = Measurement(value: value, unit: UnitTemperature.celsius)
+        return MeasurementFormatter().string(from: measurement)
+    }
 }
