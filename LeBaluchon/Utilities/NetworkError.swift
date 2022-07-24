@@ -11,14 +11,14 @@ import Foundation
 public enum NetworkError: Error {
     case failure
     case wrongURLError
-    
+
     case loadDataError
-    
+
     case unknown
 }
 
 extension NetworkError: LocalizedError {
-    
+
     /// Errors descriptions
     public var errorDescription: String? {
         switch self {
@@ -30,7 +30,7 @@ extension NetworkError: LocalizedError {
             return "Unexpected error"
         }
     }
-    
+
     /// Error failure reasons
     public var failureReason: String? {
         switch self {
@@ -44,7 +44,7 @@ extension NetworkError: LocalizedError {
             return "An unexpected error as been detected."
         }
     }
-    
+
     /// Error recovery suggestion
     public var recoverySuggestion: String? {
         switch self {
@@ -57,7 +57,7 @@ extension NetworkError: LocalizedError {
 struct AppError: Identifiable {
     let id: UUID
     let error: NetworkError
-    
+
     init(error: NetworkError) {
         self.id = UUID()
         self.error = error

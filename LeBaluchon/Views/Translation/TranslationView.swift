@@ -12,9 +12,9 @@ struct TranslationView: View {
     @StateObject private var viewModel = TranslationViewModel()
     @State var text: String = ""
     @State var placeholderText: String = "Enter some text to translate"
-    
+
     @State var selectTarget = false
-    
+
     var body: some View {
         NavigationView {
             form
@@ -28,7 +28,7 @@ struct TranslationView: View {
                     title: Text(NetworkError.unknown.errorDescription!),
                     message: Text(NetworkError.unknown.failureReason!))
             }
-            
+
             return Alert(
                 title: Text(descrition),
                 message: Text(message))
@@ -50,45 +50,41 @@ extension TranslationView {
                     Picker("Source language", selection: $viewModel.source) {
                         ForEach(viewModel.langs.indices, id: \.self) { index in
                             let lang = viewModel.langs[index]
-                            langListView(lang: lang)
+                            LangListView(lang: lang)
                         }
                     }
                 }
             }
-            
-            
+
             Section(header: Text("Translate")) {
                 TextEditor(text: $text)
                     .frame(minHeight: 100, alignment: .leading)
                     .multilineTextAlignment(.leading)
                     .modifier(TextFieldClearButton(text: $text))
                     .modifier(TextFieldPlacehorlder(text: $text, placeholder: placeholderText))
-                
+
             }
-            
+
             Section(header: Text("Actions")) {
                 Button {
                     self.selectTarget = true
                 } label: {
                     Text("Translate")
                 }
-                
+
                 Button {
                     self.viewModel.performForText(text)
                 } label: {
                     Text("Direct translate in \(viewModel.getTargetLabel())")
                 }
-                
-                
-                
             }
-            
+
             Section(header: Text("Translation")) {
                 if let results = viewModel.results {
                     Text(results.getText())
-                }else if viewModel.isLoading {
+                } else if viewModel.isLoading {
                     Text("Loading...")
-                }else {
+                } else {
                     Text("Nothing to translate yet")
                 }
             }
@@ -96,16 +92,16 @@ extension TranslationView {
         .navigationTitle("Translation")
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
-                
+
                 Button {
                     self.viewModel.switchLanguage()
                     self.viewModel.autoloadSource = false
                 } label: {
                     Image(systemName: "arrow.left.arrow.right.square")
                 }
-                
+
                 Spacer()
-                
+
                 Button {
                     withAnimation {
                         self.viewModel.autoloadSource.toggle()
@@ -122,20 +118,19 @@ struct SelectTargetSheet: View {
     @Environment(\.dismiss) var dismiss
     @StateObject var viewModel: TranslationViewModel
     var text: String
-    
+
     var body: some View {
-        
         NavigationView {
             Form {
                 Picker("Select a target language", selection: $viewModel.target) {
                     ForEach(viewModel.langs.indices, id: \.self) { index in
                         let lang = viewModel.langs[index]
-                        langListView(lang: lang)
+                        LangListView(lang: lang)
                             .id(lang.language)
                     }
                 }
                 .pickerStyle(.wheel)
-                
+
                 Button("Translate") {
                     self.viewModel.performForText(text)
                     self.dismiss()
@@ -158,9 +153,9 @@ struct SelectTargetSheet: View {
 }
 
 /// Lang view for select list
-struct langListView: View {
+struct LangListView: View {
     let lang: TranslationLanguage
-    
+
     var body: some View {
         Text("\(lang.name) - \(lang.language.uppercased())")
             .tag(lang.language)

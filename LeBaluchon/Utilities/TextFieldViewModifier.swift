@@ -12,11 +12,11 @@ import SwiftUI
 /// Add a clear button when entered text is not empty
 struct TextFieldClearButton: ViewModifier {
     @Binding var text: String
-    
+
     func body(content: Content) -> some View {
         HStack {
             content
-            
+
             if !text.isEmpty {
                 Image(systemName: "xmark.circle")
                     .foregroundColor(.gray)
@@ -33,7 +33,7 @@ struct TextFieldClearButton: ViewModifier {
 struct TextFieldPlacehorlder: ViewModifier {
     @Binding var text: String
     @State var placeholder: String
-    
+
     func body(content: Content) -> some View {
         ZStack {
             if text.isEmpty {
@@ -42,7 +42,7 @@ struct TextFieldPlacehorlder: ViewModifier {
                     .foregroundColor(.gray)
                     .disabled(true)
             }
-            
+
             content
         }
     }

@@ -19,8 +19,6 @@ extension View {
     }
 }
 
-
-
 extension View {
     /// Change the default behavior for landscape style view on iphone
     @ViewBuilder func phoneOnlyNavigationView() -> some View {

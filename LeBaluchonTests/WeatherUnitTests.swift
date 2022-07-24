@@ -6,9 +6,7 @@
 //
 
 @testable import LeBaluchon
-import SwiftUI
 import XCTest
-
 
 class WeatherUnitTests: XCTestCase {
     var viewModel: WeatherViewModel!
@@ -23,7 +21,7 @@ class WeatherUnitTests: XCTestCase {
         XCTAssertNil(viewModel.error)
         XCTAssertTrue(viewModel.favorites.isEmpty)
     }
-    
+
     func testGivenWeatherWhenFetchingWeatherThenModelShouldBe30AtToulonAndImageCloudSun() throws {
         let url = Bundle.main.url(forResource: "weather", withExtension: "json")!
         let expectation = XCTestExpectation()
@@ -33,13 +31,13 @@ class WeatherUnitTests: XCTestCase {
             XCTAssertEqual(weather.name, "Toulon")
             XCTAssertEqual(weather.weather.first!.symbol, Image(systemName: "cloud.sun"))
             expectation.fulfill()
-        } onFailure: { error in
+        } onFailure: { _ in
             //
         }
-        
+
         wait(for: [expectation], timeout: 3)
     }
-    
+
     func testGivenWeatherWhenFetchingOtherWeatherThenModelShouldBe34AtLongXuyenAndImageSun() throws {
         let url = Bundle.main.url(forResource: "other-weather", withExtension: "json")!
         let expectation = XCTestExpectation()
@@ -49,13 +47,13 @@ class WeatherUnitTests: XCTestCase {
             XCTAssertEqual(weather.name, "Long Xuyen")
             XCTAssertEqual(weather.weather.first!.symbol, Image(systemName: "sun.max"))
             expectation.fulfill()
-        } onFailure: { error in
+        } onFailure: { _ in
             //
         }
-        
+
         wait(for: [expectation], timeout: 3)
     }
-    
+
     func testGivenArrayOfWeatherTypeIdsWhenGoingThoughtThenGetAllSymbolsPossibilities() {
         let ids = [201: Image(systemName: "cloud.bolt"),
                    301: Image(systemName: "cloud.drizzle"),
@@ -65,11 +63,10 @@ class WeatherUnitTests: XCTestCase {
                    800: Image(systemName: "sun.max"),
                    802: Image(systemName: "cloud"),
                    900: Image(systemName: "cloud.sun")]
-        
+
         for (key, value) in ids {
             let weatherType = WeatherType(id: key, main: "test", description: "test", icon: "test")
             XCTAssertEqual(weatherType.symbol, value)
-            
         }
     }
 }

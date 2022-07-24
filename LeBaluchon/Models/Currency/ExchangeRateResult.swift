@@ -14,8 +14,7 @@ struct ExchangeRateResult: Codable, Hashable {
     let to: String
     let result: Double
     let rate: Double
-    
-    
+
     enum CodingKeys: String, CodingKey {
         case success = "result"
         case from = "base_code"

@@ -9,11 +9,10 @@
 import Foundation
 import SwiftUI
 
-
 /// Tab bar items enum
 enum TabBarItem: Hashable {
     case weather, exchange, translate
-    
+
     var iconName: String {
         switch self {
         case .weather: return "cloud.sun"
@@ -21,7 +20,7 @@ enum TabBarItem: Hashable {
         case .translate: return "captions.bubble"
         }
     }
-    
+
     var title: String {
         switch self {
         case .weather: return "Weather"
@@ -29,7 +28,7 @@ enum TabBarItem: Hashable {
         case .translate: return "Translate"
         }
     }
-    
+
     var color: Color {
         switch self {
         case .weather: return .red

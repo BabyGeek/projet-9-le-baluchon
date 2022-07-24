@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 /// Manage networking requests
 class NetworkManager {
     @Published var isLoading: Bool = false
@@ -16,23 +15,23 @@ class NetworkManager {
     ///   - url: url to follow for the request
     ///   - success: callback on success
     ///   - failure: callback on failure
-    func loadData<T:Decodable>(urlRequest url: URL, onSuccess success: @escaping (T) -> (), onFailure failure: @escaping (NetworkError) -> ()) {
+    func loadData<T: Decodable>(urlRequest url: URL,
+                                onSuccess success: @escaping (T) -> Void,
+                                onFailure failure: @escaping (NetworkError) -> Void) {
         self.isLoading = true
-        let task = URLSession.shared.dataTask(with: url)
-        {
-            data, response, error in
-            
+        let task = URLSession.shared.dataTask(with: url) { data, _, error in
+
             DispatchQueue.main.async {
                 guard let data = data, error == nil else {
                     failure(.loadDataError)
                     return
                 }
-                
+
                 do {
                     let object = try JSONDecoder().decode(T.self, from: data)
-                    
+
                     success(object)
-                    
+
                 } catch {
                     failure(.failure)
                 }
