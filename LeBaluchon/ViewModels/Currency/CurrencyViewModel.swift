@@ -52,8 +52,6 @@ class CurrencyViewModel: NetworkManager, ObservableObject {
             }, onFailure: { error in
                 self.error = AppError(error: error)
             })
-        
-        
     }
 #endif
     
