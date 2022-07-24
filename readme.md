@@ -43,4 +43,4 @@ LightMode            |  DarkMode
 ### Quick demo
 LightMode            |  DarkMode
 :-------------------------:|:-------------------------:
-![](https://user-images.githubusercontent.com/7671064/180654522-3cac9d80-7ab1-4b49-b96b-42749d6208f9.mp4) | ![](https://user-images.githubusercontent.com/7671064/180654524-75e59b8f-b34b-44d0-a187-24ff43595013.mp4)
+[![](images/launchScreen_l.PNG)](https://user-images.githubusercontent.com/7671064/180654524-75e59b8f-b34b-44d0-a187-24ff43595013.mp4) | [![](images/launchScreen_d.PNG)](https://user-images.githubusercontent.com/7671064/180654522-3cac9d80-7ab1-4b49-b96b-42749d6208f9.mp4)
