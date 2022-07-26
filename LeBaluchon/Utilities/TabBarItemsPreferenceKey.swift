@@ -13,7 +13,7 @@ import SwiftUI
 struct TabBarItemsPreferenceKey: PreferenceKey {
     static var defaultValue: [TabBarItem] = [TabBarItem]()
 
-    /// Allow to add multiple values to the tab bar
+    /// Allow to add value to the modifier key defaultValue
     /// - Parameters:
     ///   - value: current value
     ///   - nextValue: next value

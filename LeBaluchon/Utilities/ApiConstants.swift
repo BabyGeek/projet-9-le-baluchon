@@ -17,4 +17,6 @@ struct ApiConstants {
 
     static let translationAPIURL = "https://translation.googleapis.com/language/translate/v2"
     static let translationAPIKEY = "AIzaSyBkcs1EDaphfKpPH2Zv5qVlsAzowjOMorg"
+
+    static let geoAPIURL = "https://api.openweathermap.org/geo/1.0/direct"
 }
