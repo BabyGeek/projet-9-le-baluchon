@@ -10,7 +10,9 @@ import SwiftUI
 
 /// Weather model
 struct Weather: Codable, Hashable {
+    let id: Int
     let name: String
+    let coord: WeatherCoordinate
     let sys: WheatherSys
     let main: WeatherMain
     let weather: [WeatherType]
@@ -82,4 +84,9 @@ struct WeatherMain: Codable, Hashable {
         let measurement = Measurement(value: value, unit: UnitTemperature.celsius)
         return MeasurementFormatter().string(from: measurement)
     }
+}
+
+struct WeatherCoordinate: Codable, Hashable {
+    let lat: Double
+    let lon: Double
 }

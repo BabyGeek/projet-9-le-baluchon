@@ -13,12 +13,20 @@ class WeatherViewModel: NetworkManager, ObservableObject {
     @Published var error: AppError?
     @Published var target: Weather?
     @Published var favorites: [Weather] = [Weather]()
+
     private let url: String = ApiConstants.weatherAPIURL
     private let apiKey: String = ApiConstants.weatherAPIKEY
-    var lang = "en"
+    var lang = Locale.current.identifier
     var units = "metric"
 
     #if DEBUG
+    override init() {
+        super.init()
+        self.isLoading = true
+        self.load()
+        self.isLoading = false
+    }
+
     /// Perform the base request to set target or add a favorite weather
     /// - Parameters:
     ///   - latitude: Value for the latitude of weather requested zone
@@ -31,24 +39,27 @@ class WeatherViewModel: NetworkManager, ObservableObject {
         ]
 
         guard let url = self.getQueryURL(params: params) else {
-            self.error = AppError(error: .wrongURLError)
+            self.error = AppError(error: NetworkError.wrongURLError)
             return
         }
-
-        self.loadData(urlRequest: url, onSuccess: { (weather: Weather) in
+        self.fetchData(url: url) { (weather: Weather) in
             if setTarget {
                 self.target = weather
             } else {
                 self.favorites.append(weather)
             }
+        }
+    }
+
+    private func fetchData<T: Decodable>(
+        url: URL,
+        success: @escaping (T) -> Void) {
+
+        self.loadData(urlRequest: url, onSuccess: { object in
+            success(object)
         }, onFailure: { error in
             self.error = AppError(error: error)
         })
-    }
-
-    /// Clean favorites weathers
-    public func cleanResults() {
-        favorites = [Weather]()
     }
 
     /// Build the API query related to additional parameters given
@@ -74,6 +85,109 @@ class WeatherViewModel: NetworkManager, ObservableObject {
         }
 
         return nil
+    }
+    
+    public func load() {
+        self.loadFavorites()
+        self.loadTarget()
+    }
+
+    /// Load favorites saved
+    public func loadFavorites() {
+        self.favorites = [Weather]()
+        let type = CityType.favorite
+        let defaults = UserDefaults.standard
+        let favoriteCities  = defaults.array(
+            forKey: "\(type.rawValue)Baluchon") as? [Int] ?? [Int]()
+        
+
+        for cityID in favoriteCities {
+            let params = [
+                URLQueryItem(name: "id", value: String(format: "%d", cityID))
+            ]
+            
+            guard let url = self.getQueryURL(params: params) else {
+                self.error = AppError(error: NetworkError.wrongURLError)
+                return
+            }
+            self.fetchData(url: url) { (weather: Weather) in
+                self.favorites.append(weather)
+            }
+        }
+    }
+    
+    /// Load destination saved
+    public func loadTarget() {
+        let type = CityType.destination
+        let defaults = UserDefaults.standard
+        let cityID  = defaults.integer(
+            forKey: "\(type.rawValue)Baluchon")
+        
+        if cityID == 0 {
+            return
+        }
+        
+        let params = [ URLQueryItem(name: "id", value: String(format: "%d", cityID)) ]
+        guard let url = self.getQueryURL(params: params) else {
+            self.error = AppError(error: NetworkError.wrongURLError)
+            return
+        }
+        self.fetchData(url: url) { (weather: Weather) in
+            self.target = weather
+        }
+    }
+    
+    public func saveCity(_ city: City, type: CityType) {
+        let defaults = UserDefaults.standard
+        
+        let params = [
+            URLQueryItem(name: "lat", value: String(format: "%f", city.lat)),
+            URLQueryItem(name: "lon", value: String(format: "%f", city.lon))
+        ]
+
+        guard let url = self.getQueryURL(params: params) else {
+            self.error = AppError(error: NetworkError.wrongURLError)
+            return
+        }
+
+        self.fetchData(url: url) { (weather: Weather) in
+            let newID = weather.id
+            
+            if type == .favorite {
+                var savedCities = defaults.object(
+                    forKey: "\(type.rawValue)Baluchon") as? [Int] ?? [Int]()
+
+                if let _ = savedCities.first(where: { id in
+                    return id == newID
+                }) {
+                    self.error = AppError(error: CRUDError.alreadyExists)
+                    return
+                }
+                
+                savedCities.append(newID)
+                defaults.set(savedCities, forKey: "\(type.rawValue)Baluchon")
+            } else {
+                defaults.set(newID, forKey: "\(type.rawValue)Baluchon")
+            }
+        }
+
+        
+    }
+
+    public func synchData() {
+        let defaults = UserDefaults.standard
+        if self.favorites.isEmpty {
+            defaults.set([Int](), forKey: "\(CityType.favorite.rawValue)Baluchon")
+        } else {
+            var weatherFavorites = [Int]()
+            for weather in self.favorites {
+                weatherFavorites.append(weather.id)
+            }
+            
+            defaults.set(weatherFavorites, forKey: "\(CityType.favorite.rawValue)Baluchon")
+        }
+        
+        defaults.set(target?.id, forKey: "\(CityType.destination.rawValue)Baluchon")
     }
     #endif
 }

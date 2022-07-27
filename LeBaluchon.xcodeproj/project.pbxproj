@@ -28,6 +28,12 @@
 		2B7075592889EF4900CD7256 /* TranslationLanguageDictionnary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7075582889EF4900CD7256 /* TranslationLanguageDictionnary.swift */; };
 		2B70755B288A193F00CD7256 /* TranslationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B70755A288A193F00CD7256 /* TranslationData.swift */; };
 		2B70755D288A214E00CD7256 /* TranslationUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B70755C288A214E00CD7256 /* TranslationUnitTests.swift */; };
+		2B70D785288F342A00D60BF4 /* CityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B70D784288F342A00D60BF4 /* CityViewModel.swift */; };
+		2B70D788288FC27D00D60BF4 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B70D787288FC27D00D60BF4 /* City.swift */; };
+		2B74F4C12890B8250005E46A /* WeatherFavorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B74F4C02890B8250005E46A /* WeatherFavorites.swift */; };
+		2B952E942890658E007F6917 /* CityFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B952E932890658E007F6917 /* CityFormView.swift */; };
+		2B952E962890869A007F6917 /* CityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B952E952890869A007F6917 /* CityType.swift */; };
+		2B952E9828909907007F6917 /* CRUDError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B952E9728909907007F6917 /* CRUDError.swift */; };
 		2B97A24F288729290060B74F /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B97A24E288729290060B74F /* NetworkManager.swift */; };
 		2B992D4128889C3300DBAC4F /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B992D4028889C3300DBAC4F /* NetworkError.swift */; };
 		2B992D4228889C3300DBAC4F /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B992D4028889C3300DBAC4F /* NetworkError.swift */; };
@@ -107,6 +113,12 @@
 		2B7075582889EF4900CD7256 /* TranslationLanguageDictionnary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationLanguageDictionnary.swift; sourceTree = "<group>"; };
 		2B70755A288A193F00CD7256 /* TranslationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationData.swift; sourceTree = "<group>"; };
 		2B70755C288A214E00CD7256 /* TranslationUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationUnitTests.swift; sourceTree = "<group>"; };
+		2B70D784288F342A00D60BF4 /* CityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityViewModel.swift; sourceTree = "<group>"; };
+		2B70D787288FC27D00D60BF4 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
+		2B74F4C02890B8250005E46A /* WeatherFavorites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherFavorites.swift; sourceTree = "<group>"; };
+		2B952E932890658E007F6917 /* CityFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityFormView.swift; sourceTree = "<group>"; };
+		2B952E952890869A007F6917 /* CityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityType.swift; sourceTree = "<group>"; };
+		2B952E9728909907007F6917 /* CRUDError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRUDError.swift; sourceTree = "<group>"; };
 		2B97A24E288729290060B74F /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		2B992D4028889C3300DBAC4F /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		2B9F8B4E288749A700A61AC8 /* WeatherUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherUnitTests.swift; sourceTree = "<group>"; };
@@ -185,8 +197,34 @@
 				2BC3FB34288B4223009A8A1F /* TextFieldViewModifier.swift */,
 				2B121F9C288CA54900D29446 /* ViewExtensions.swift */,
 				2B121FA0288D394200D29446 /* EnvironmentValuesExtensions.swift */,
+				2B952E9728909907007F6917 /* CRUDError.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		2B70D783288F341B00D60BF4 /* City */ = {
+			isa = PBXGroup;
+			children = (
+				2B70D784288F342A00D60BF4 /* CityViewModel.swift */,
+			);
+			path = City;
+			sourceTree = "<group>";
+		};
+		2B70D786288FC26B00D60BF4 /* City */ = {
+			isa = PBXGroup;
+			children = (
+				2B70D787288FC27D00D60BF4 /* City.swift */,
+				2B952E952890869A007F6917 /* CityType.swift */,
+			);
+			path = City;
+			sourceTree = "<group>";
+		};
+		2B952E922890657A007F6917 /* City */ = {
+			isa = PBXGroup;
+			children = (
+				2B952E932890658E007F6917 /* CityFormView.swift */,
+			);
+			path = City;
 			sourceTree = "<group>";
 		};
 		2B97A24D2886FBD30060B74F /* MockDatas */ = {
@@ -269,6 +307,7 @@
 		2BC5B511287DF1AF003BC4E2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2B952E922890657A007F6917 /* City */,
 				2B2F094A2882D9440013E438 /* TabBar */,
 				2BC5B514287DF1C5003BC4E2 /* Weather */,
 				2BC5B513287DF1BC003BC4E2 /* Translation */,
@@ -299,6 +338,7 @@
 			children = (
 				2BC5B4E9287DF061003BC4E2 /* WeatherView.swift */,
 				2B5C692B288052E500593690 /* WeatherRowView.swift */,
+				2B74F4C02890B8250005E46A /* WeatherFavorites.swift */,
 			);
 			path = Weather;
 			sourceTree = "<group>";
@@ -306,6 +346,7 @@
 		2BC5B515287DF2BA003BC4E2 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				2B70D783288F341B00D60BF4 /* City */,
 				2BC5B51C287DF317003BC4E2 /* Currency */,
 				2BC5B51B287DF310003BC4E2 /* Translation */,
 				2BC5B51A287DF309003BC4E2 /* Weather */,
@@ -316,6 +357,7 @@
 		2BC5B516287DF2C6003BC4E2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2B70D786288FC26B00D60BF4 /* City */,
 				2B2F094F28841B570013E438 /* TabBar */,
 				2BC5B519287DF2F7003BC4E2 /* Currency */,
 				2BC5B518287DF2EE003BC4E2 /* Translation */,
@@ -541,17 +583,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B952E9828909907007F6917 /* CRUDError.swift in Sources */,
 				2B2F09642884B5590013E438 /* CurrencySymbol.swift in Sources */,
 				2B2F09622884B2340013E438 /* CurrencyDictionnary.swift in Sources */,
+				2B70D788288FC27D00D60BF4 /* City.swift in Sources */,
 				2B2F0958288446400013E438 /* ApiConstants.swift in Sources */,
 				2B70755B288A193F00CD7256 /* TranslationData.swift in Sources */,
+				2B74F4C12890B8250005E46A /* WeatherFavorites.swift in Sources */,
 				2B7075572889D7FE00CD7256 /* TranslationView.swift in Sources */,
+				2B70D785288F342A00D60BF4 /* CityViewModel.swift in Sources */,
 				2B2F095A288448A60013E438 /* CurrencyViewModel.swift in Sources */,
 				2B2F094E288417EC0013E438 /* AppTabBarView.swift in Sources */,
 				2BC5B4EA287DF061003BC4E2 /* WeatherView.swift in Sources */,
 				2B5C692C288052E500593690 /* WeatherRowView.swift in Sources */,
 				2BC5B51E287E0190003BC4E2 /* Weather.swift in Sources */,
 				2B121F9D288CA54900D29446 /* ViewExtensions.swift in Sources */,
+				2B952E942890658E007F6917 /* CityFormView.swift in Sources */,
 				2BC5B521287E05F9003BC4E2 /* WeatherViewModel.swift in Sources */,
 				2B2F094C2882D9560013E438 /* TabBarView.swift in Sources */,
 				2B97A24F288729290060B74F /* NetworkManager.swift in Sources */,
@@ -565,6 +612,7 @@
 				2B2F096028844A710013E438 /* ExchangeRateResult.swift in Sources */,
 				2BC3FB35288B4223009A8A1F /* TextFieldViewModifier.swift in Sources */,
 				2B2F09552884309F0013E438 /* TabBarItemsPreferenceKey.swift in Sources */,
+				2B952E962890869A007F6917 /* CityType.swift in Sources */,
 				2B992D4128889C3300DBAC4F /* NetworkError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -621,6 +669,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD)";
+				"ARCHS[sdk=*]" = "$(ARCHS_STANDARD)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -752,6 +801,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD)";
+				"ARCHS[sdk=*]" = "$(ARCHS_STANDARD)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -815,6 +865,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD)";
+				"ARCHS[sdk=*]" = "$(ARCHS_STANDARD)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -859,6 +910,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";

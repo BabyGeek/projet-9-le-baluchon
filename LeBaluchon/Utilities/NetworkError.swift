@@ -56,9 +56,9 @@ extension NetworkError: LocalizedError {
 
 struct AppError: Identifiable {
     let id: UUID
-    let error: NetworkError
+    let error: LocalizedError
 
-    init(error: NetworkError) {
+    init(error: LocalizedError) {
         self.id = UUID()
         self.error = error
     }

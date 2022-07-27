@@ -41,7 +41,7 @@ class CurrencyViewModel: NetworkManager, ObservableObject {
         ]
 
         guard let url = self.getURL(resource: "pair", params: params) else {
-            self.error = AppError(error: .wrongURLError)
+            self.error = AppError(error: NetworkError.wrongURLError)
             return
         }
 

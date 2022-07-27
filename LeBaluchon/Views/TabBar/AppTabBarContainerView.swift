@@ -36,6 +36,7 @@ struct AppTabBarContainerView<Content: View>: View {
             self.tabs = value
         }
         .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification)) { _ in
+            print("keyboardUP")
             self.keyboardEnabled = true
         }
         .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification)) { _ in
