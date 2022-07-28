@@ -15,10 +15,9 @@ class WeatherViewModel: NetworkManager, ObservableObject {
     @Published var favorites: [Weather] = [Weather]()
     private let url: String = ApiConstants.weatherAPIURL
     private let apiKey: String = ApiConstants.weatherAPIKEY
-    var lang = "en"
+    var lang: String = Locale.current.identifier
     var units = "metric"
 
-    #if DEBUG
     /// Perform the base request to set target or add a favorite weather
     /// - Parameters:
     ///   - latitude: Value for the latitude of weather requested zone
@@ -75,5 +74,4 @@ class WeatherViewModel: NetworkManager, ObservableObject {
 
         return nil
     }
-    #endif
 }

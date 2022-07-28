@@ -8,7 +8,6 @@
 import Foundation
 import SwiftUI
 
-#if DEBUG
 /// Add a clear button when entered text is not empty
 struct TextFieldClearButton: ViewModifier {
     @Binding var text: String
@@ -47,4 +46,3 @@ struct TextFieldPlacehorlder: ViewModifier {
         }
     }
 }
-#endif

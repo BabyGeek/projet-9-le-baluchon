@@ -5,7 +5,6 @@
 //  Created by Paul Oggero on 14/07/2022.
 //
 
-#if DEBUG
 import SwiftUI
 
 /// Weather single row view
@@ -60,4 +59,3 @@ struct MainContent: View {
         }
     }
 }
-#endif

@@ -4,7 +4,7 @@
 //
 //  Created by Paul Oggero on 23/07/2022.
 //
-#if DEBUG
+
 import Foundation
 import SwiftUI
 
@@ -29,4 +29,3 @@ extension View {
         }
     }
 }
-#endif

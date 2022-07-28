@@ -5,7 +5,6 @@
 //  Created by Paul Oggero on 24/07/2022.
 //
 
-#if DEBUG
 import Foundation
 import SwiftUI
 
@@ -15,4 +14,3 @@ extension EnvironmentValues {
         { presentationMode.wrappedValue.dismiss() }
     }
 }
-#endif

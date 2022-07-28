@@ -5,8 +5,8 @@
 //  Created by Paul Oggero on 21/07/2022.
 //
 
-@testable import LeBaluchon
 import XCTest
+import SwiftUI
 
 class NetworkUnitTests: XCTestCase {
     var manager: NetworkManager!

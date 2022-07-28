@@ -5,8 +5,6 @@
 //  Created by Paul Oggero on 17/07/2022.
 //
 
-#if DEBUG
-
 import SwiftUI
 
 /// View for the currency page
@@ -108,5 +106,3 @@ struct SymbolListView: View {
         }
     }
 }
-
-#endif
