@@ -64,16 +64,14 @@
 		2BD5554F2893079300EE5D05 /* Translation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5554E2893079300EE5D05 /* Translation.swift */; };
 		2BD555502893079300EE5D05 /* Translation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5554E2893079300EE5D05 /* Translation.swift */; };
 		2BD5555228930FBB00EE5D05 /* SelectTargetSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5555128930FBB00EE5D05 /* SelectTargetSheetView.swift */; };
-		2BD5555628932EBD00EE5D05 /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B121F9C288CA54900D29446 /* ViewExtensions.swift */; };
+		2BD555582893367A00EE5D05 /* ApiConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2F0957288446400013E438 /* ApiConstants.swift */; };
 		2BD55826288B5C070030A480 /* translate.json in Resources */ = {isa = PBXBuildFile; fileRef = 2BC3FB36288B569B009A8A1F /* translate.json */; };
 		2BD55827288B5C230030A480 /* exchange.json in Resources */ = {isa = PBXBuildFile; fileRef = 2BFAA3F2288760E0002B8941 /* exchange.json */; };
 		2BD55828288B5C260030A480 /* rate.json in Resources */ = {isa = PBXBuildFile; fileRef = 2BFAA3F1288760CC002B8941 /* rate.json */; };
 		2BD55829288B5C290030A480 /* other-weather.json in Resources */ = {isa = PBXBuildFile; fileRef = 2BFAA3EA288757E3002B8941 /* other-weather.json */; };
 		2BD5582A288B5C2B0030A480 /* symbols.json in Resources */ = {isa = PBXBuildFile; fileRef = 2BFAA3F0288760AF002B8941 /* symbols.json */; };
 		2BD5582B288B5C2E0030A480 /* weather.json in Resources */ = {isa = PBXBuildFile; fileRef = 2BFAA3E72887535C002B8941 /* weather.json */; };
-		2BFAA3DF28874EC2002B8941 /* ApiConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2F0957288446400013E438 /* ApiConstants.swift */; };
 		2BFAA3E028874ED3002B8941 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B97A24E288729290060B74F /* NetworkManager.swift */; };
-		2BFAA3E228874EDC002B8941 /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2F095028841B670013E438 /* TabBarItem.swift */; };
 		2BFAA3E328874EDF002B8941 /* ExchangeRateResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2F095F28844A710013E438 /* ExchangeRateResult.swift */; };
 		2BFAA3E428874EE2002B8941 /* CurrencyDictionnary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2F09612884B2340013E438 /* CurrencyDictionnary.swift */; };
 		2BFAA3E528874EE5002B8941 /* CurrencySymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2F09632884B5590013E438 /* CurrencySymbol.swift */; };
@@ -630,16 +628,14 @@
 				2BC5B522287E05F9003BC4E2 /* WeatherViewModel.swift in Sources */,
 				2BD555422892F12400EE5D05 /* TranslationLanguageDictionnary.swift in Sources */,
 				2BD555472893072700EE5D05 /* TranslationLanguageData.swift in Sources */,
-				2BFAA3DF28874EC2002B8941 /* ApiConstants.swift in Sources */,
-				2BD5555628932EBD00EE5D05 /* ViewExtensions.swift in Sources */,
 				2B70754E2889A93600CD7256 /* NetworkUnitTests.swift in Sources */,
 				2BC5B51F287E0190003BC4E2 /* Weather.swift in Sources */,
 				2BD5554D2893078C00EE5D05 /* TranslationDictionnary.swift in Sources */,
 				2BD555442892F17400EE5D05 /* TranslationData.swift in Sources */,
 				2BFAA3E528874EE5002B8941 /* CurrencySymbol.swift in Sources */,
+				2BD555582893367A00EE5D05 /* ApiConstants.swift in Sources */,
 				2BD555412892F0C600EE5D05 /* WheatherSys.swift in Sources */,
 				2BD5553F2892F0C000EE5D05 /* WeatherType.swift in Sources */,
-				2BFAA3E228874EDC002B8941 /* TabBarItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -705,7 +701,6 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -837,7 +832,6 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				EXCLUDED_ARCHS = "";
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -899,7 +893,6 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -911,6 +904,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";

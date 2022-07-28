@@ -24,6 +24,7 @@ class CurrencyViewModel: NetworkManager, ObservableObject {
 
     override init() {
         super.init()
+        dump(self)
         self.performSymbols()
     }
 

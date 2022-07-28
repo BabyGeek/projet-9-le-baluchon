@@ -35,7 +35,6 @@ struct WeatherMain: Codable, Hashable {
         }
 
         let measurement = Measurement(value: value, unit: UnitTemperature.celsius)
-        dump(measurement)
         return MeasurementFormatter().string(from: measurement)
     }
 }

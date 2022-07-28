@@ -13,7 +13,7 @@ struct WeatherView: View {
 
     var body: some View {
         NavigationView {
-            List {
+            Form {
                 if let target = viewModel.target {
                     Section(header: Text("Destination")) {
                         WeatherRowView(weather: target)

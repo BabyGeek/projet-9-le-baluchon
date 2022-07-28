@@ -54,15 +54,13 @@ extension CurrencyView {
                     .keyboardType(.decimalPad)
 
                 Picker("From", selection: $viewModel.source) {
-                    ForEach($viewModel.symbols.indices, id: \.self) { index in
-                        let symbol = viewModel.symbols[index]
+                    ForEach(viewModel.symbols, id: \.self) { symbol in
                         SymbolListView(symbol: symbol)
                     }
                 }
 
                 Picker("To", selection: $viewModel.target) {
-                    ForEach($viewModel.symbols.indices, id: \.self) { index in
-                        let symbol = viewModel.symbols[index]
+                    ForEach(viewModel.symbols, id: \.self) { symbol in
                         SymbolListView(symbol: symbol)
                     }
                 }

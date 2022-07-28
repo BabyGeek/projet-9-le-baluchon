@@ -28,14 +28,16 @@ struct TranslationView: View {
                             Image(systemName: "arrow.left.arrow.right.square")
                         }
 
-                        Spacer()
-
                         Button {
                             withAnimation {
                                 self.viewModel.autoloadSource.toggle()
                             }
                         } label: {
-                            Image(systemName: self.viewModel.autoloadSource ? "star.bubble.fill" : "star.bubble")
+                            if #available(iOS 15, *) {
+                                Image(systemName: self.viewModel.autoloadSource ? "star.bubble.fill" : "star.bubble")
+                            } else {
+                                Image(systemName: self.viewModel.autoloadSource ? "star.fill" : "star")
+                            }
                         }
                     }
                 }
