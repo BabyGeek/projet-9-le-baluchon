@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 struct SelectTargetSheetView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var viewModel: TranslationViewModel
