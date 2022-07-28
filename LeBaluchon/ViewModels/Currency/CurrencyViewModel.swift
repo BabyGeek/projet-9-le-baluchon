@@ -27,7 +27,6 @@ class CurrencyViewModel: NetworkManager, ObservableObject {
         self.performSymbols()
     }
 
-#if DEBUG
     /// Perform the base request to set the exchange result
     /// - Parameters:
     ///   - from: Value for the currency you want to exchange
@@ -52,7 +51,6 @@ class CurrencyViewModel: NetworkManager, ObservableObject {
                 self.error = AppError(error: error)
             })
     }
-#endif
 
     public func switchCurrencies() {
         let tempSource = self.source

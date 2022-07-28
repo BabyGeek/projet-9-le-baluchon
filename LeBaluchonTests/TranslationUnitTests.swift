@@ -5,7 +5,6 @@
 //  Created by Paul Oggero on 22/07/2022.
 //
 
-@testable import LeBaluchon
 import XCTest
 
 class TranslationUnitTests: XCTestCase {

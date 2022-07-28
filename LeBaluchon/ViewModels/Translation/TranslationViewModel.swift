@@ -25,7 +25,6 @@ class TranslationViewModel: NetworkManager, ObservableObject {
         self.getLangs()
     }
 
-#if DEBUG
     /// Perform translate request
     /// - Parameter text: Text to translate
     public func performForText(_ text: String) {
@@ -46,7 +45,6 @@ class TranslationViewModel: NetworkManager, ObservableObject {
             }
         }
     }
-#endif
 
     /// Switch target with source language
     public func switchLanguage() {
@@ -56,11 +54,11 @@ class TranslationViewModel: NetworkManager, ObservableObject {
     }
 
     public func getSourceLabel() -> String {
-        return langDictionnary.getNameForLanguage(self.source)
+        langDictionnary.getNameForLanguage(self.source)
     }
 
     public func getTargetLabel() -> String {
-        return langDictionnary.getNameForLanguage(self.target)
+        langDictionnary.getNameForLanguage(self.target)
     }
 
     /// Load langs from API

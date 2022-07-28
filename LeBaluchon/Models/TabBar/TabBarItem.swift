@@ -5,7 +5,6 @@
 //  Created by Paul Oggero on 17/07/2022.
 //
 
-#if DEBUG
 import Foundation
 import SwiftUI
 
@@ -37,4 +36,3 @@ enum TabBarItem: Hashable {
         }
     }
 }
-#endif
