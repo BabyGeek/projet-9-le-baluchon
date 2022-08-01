@@ -9,6 +9,7 @@ import Foundation
 
 /// Network error enum
 public enum NetworkError: Error {
+    case empty
     case failure
     case wrongURLError
 
@@ -22,6 +23,8 @@ extension NetworkError: LocalizedError {
     /// Errors descriptions
     public var errorDescription: String? {
         switch self {
+        case .empty:
+            return "Data error"
         case .wrongURLError:
             return "Network error"
         case .loadDataError, .failure:
@@ -34,6 +37,8 @@ extension NetworkError: LocalizedError {
     /// Error failure reasons
     public var failureReason: String? {
         switch self {
+        case .empty:
+            return "Empty given data, please try again with real data."
         case .failure:
             return "Error while decoding datas."
         case .wrongURLError:

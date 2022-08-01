@@ -28,6 +28,11 @@ class TranslationViewModel: NetworkManager, ObservableObject {
     /// Perform translate request
     /// - Parameter text: Text to translate
     public func performForText(_ text: String) {
+        if text == "" {
+            self.error = AppError(error: .empty)
+            return
+        }
+
         var params = [
             URLQueryItem(name: "target", value: self.target),
             URLQueryItem(name: "q", value: text)
