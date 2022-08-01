@@ -6,7 +6,6 @@
 //
 
 import XCTest
-import SwiftUI
 
 class NetworkUnitTests: XCTestCase {
     var manager: NetworkManager!
