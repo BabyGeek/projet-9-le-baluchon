@@ -107,7 +107,8 @@ extension TranslationView {
                 if let results = viewModel.results {
                     Text(results.getText())
                 } else if viewModel.isLoading {
-                    Text("Loading...")
+                    ProgressView()
+                        .progressViewStyle(.circular)
                 } else {
                     Text("Nothing to translate yet")
                 }

@@ -72,7 +72,8 @@ extension CurrencyView {
 
             Section(header: Text("Result")) {
                 if viewModel.isLoading {
-                    Text("Loading...")
+                    ProgressView()
+                        .progressViewStyle(.circular)
                 } else {
                     Text(viewModel.result != nil ?
                          "\(viewModel.getLocaleStringFor()) = \(viewModel.getLocaleStringFor(.target))"
